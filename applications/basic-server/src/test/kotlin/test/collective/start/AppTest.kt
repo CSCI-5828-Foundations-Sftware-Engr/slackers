@@ -1,4 +1,4 @@
-package test.collective.start
+package test.goodboards.app
 
 import com.goodboards.app.module
 import io.ktor.http.*
