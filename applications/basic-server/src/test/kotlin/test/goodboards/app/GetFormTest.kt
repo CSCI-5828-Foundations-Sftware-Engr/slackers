@@ -10,12 +10,11 @@ import kotlin.test.assertTrue
 class GetFormTest : BaseAppTest() {
 
 
-    @Ignore
     @Test
-    fun testGetFormRespondsWithPage() = testApp {
+    fun testGetFormRespondsWithForm() = testApp {
         handleRequest(HttpMethod.Get, "/form").apply {
             assertEquals(200, response.status()?.value)
-            assertTrue(response.content!!.contains("What's your name?"))
+            assertTrue(response.content!!.contains("What is your name?"))
         }
     }
 

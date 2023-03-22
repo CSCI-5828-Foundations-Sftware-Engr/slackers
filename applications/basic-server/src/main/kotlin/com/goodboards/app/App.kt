@@ -46,9 +46,8 @@ fun Application.module() {
         get {
             call.respond(FreeMarkerContent("index.ftl", mapOf("users" to users)))
         }
-        get("/form/new") {
-            println("here")
-            call.respond(FreeMarkerContent("new.ftl", model = null))
+        get("/form") {
+            call.respond(FreeMarkerContent("form.ftl", mapOf("users" to users)))
         }
         post("/form") {
             val formParameters = call.receiveParameters()
@@ -56,13 +55,8 @@ fun Application.module() {
             val newEntry = User.newEntry(title)
             println(newEntry)
             users.add(newEntry)
-            call.respondRedirect("/form/${newEntry.id}")
+            call.respond(FreeMarkerContent("show.ftl", mapOf("user" to users.find { it.id == newEntry.id })))
         }
-        get("/form/{id}") {
-            val id = call.parameters.getOrFail<Int>("id").toInt()
-            call.respond(FreeMarkerContent("show.ftl", mapOf("user" to users.find { it.id == id })))
-        }
-
 
         static("images") { resources("images") }
         static("style") { resources("style") }
