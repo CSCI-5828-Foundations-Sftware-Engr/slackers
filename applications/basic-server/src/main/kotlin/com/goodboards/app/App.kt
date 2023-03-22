@@ -1,4 +1,4 @@
-package io.collective.start
+package com.goodboards.app
 
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.*

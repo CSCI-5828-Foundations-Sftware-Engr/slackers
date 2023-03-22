@@ -1,6 +1,6 @@
 package test.collective.start
 
-import io.collective.start.module
+import com.goodboards.app.module
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import org.junit.Test

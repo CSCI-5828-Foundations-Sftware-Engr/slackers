@@ -1,4 +1,4 @@
-package io.collective.start.analyzer
+package com.goodboards.app.analyzer
 
 import io.collective.workflow.Worker
 import kotlinx.coroutines.runBlocking

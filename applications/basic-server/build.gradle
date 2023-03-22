@@ -2,7 +2,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
 
-mainClassName = "io.collective.start.AppKt"
+mainClassName = "com.goodboards.app.AppKt"
 
 dependencies {
     implementation "io.ktor:ktor-freemarker:$ktor_version"
@@ -16,7 +16,7 @@ tasks.withType(Copy).all {
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
-        attributes "Main-Class": "io.collective.start.AppKt"
+        attributes "Main-Class": "com.goodboards.app.AppKt"
     }
     from {
         configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }

@@ -1,4 +1,4 @@
-package io.collective.start.collector
+package com.goodboards.app.analyzer
 
 import io.collective.workflow.WorkScheduler
 import io.ktor.application.*
@@ -25,5 +25,5 @@ fun Application.module() {
 fun main() {
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     val port = System.getenv("PORT")?.toInt() ?: 8888
-    embeddedServer(Netty, port, watchPaths = listOf("data-collector-server"), module = Application::module).start()
+    embeddedServer(Netty, port, watchPaths = listOf("data-analyzer-server"), module = Application::module).start()
 }

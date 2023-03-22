@@ -1,6 +1,6 @@
 package test.collective.start.analyzer
 
-import io.collective.start.analyzer.module
+import com.goodboards.app.analyzer.module
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import org.junit.Test

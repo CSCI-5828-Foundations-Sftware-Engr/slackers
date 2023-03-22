@@ -1,4 +1,4 @@
-package io.collective.start.collector
+package com.goodboards.app.analyzer
 
 import io.collective.workflow.WorkFinder
 import org.slf4j.LoggerFactory

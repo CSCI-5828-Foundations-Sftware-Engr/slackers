@@ -1,3 +1,3 @@
-package io.collective.start.analyzer
+package com.goodboards.app.collector
 
 data class ExampleTask(val info: String)

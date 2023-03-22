@@ -2,7 +2,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
 
-mainClassName = "io.collective.start.collector.AppKt"
+mainClassName = "com.goodboards.app.collector.AppKt"
 
 dependencies {
     implementation project(":components:data-collector")
@@ -16,7 +16,7 @@ tasks.withType(Copy).all {
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
-        attributes "Main-Class": "io.collective.start.collector.AppKt"
+        attributes "Main-Class": "com.goodboards.app.collector.AppKt"
     }
     from {
         configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
