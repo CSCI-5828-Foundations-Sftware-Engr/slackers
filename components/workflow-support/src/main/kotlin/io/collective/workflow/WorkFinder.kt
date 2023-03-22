@@ -1,4 +1,4 @@
-package io.collective.workflow
+package com.goodreads.workflow
 
 interface WorkFinder<T> {
     fun findRequested(name: String): List<T>

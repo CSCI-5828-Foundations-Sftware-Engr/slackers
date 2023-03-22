@@ -1,6 +1,6 @@
 package com.goodboards.app.analyzer
 
-import io.collective.workflow.Worker
+import com.goodreads.workflow.Worker
 import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 
