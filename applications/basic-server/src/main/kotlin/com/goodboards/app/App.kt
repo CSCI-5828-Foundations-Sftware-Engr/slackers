@@ -12,8 +12,9 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.util.*
 import io.ktor.util.pipeline.*
-import java.util.*
 import models.User
+import java.util.*
+
 
 val users = mutableListOf(
     User.newEntry(
@@ -46,35 +47,20 @@ fun Application.module() {
             call.respond(FreeMarkerContent("index.ftl", mapOf("users" to users)))
         }
         get("/form/new") {
+            println("here")
             call.respond(FreeMarkerContent("new.ftl", model = null))
         }
         post("/form") {
             val formParameters = call.receiveParameters()
             val title = formParameters.getOrFail("title")
             val newEntry = User.newEntry(title)
+            println(newEntry)
             users.add(newEntry)
             call.respondRedirect("/form/${newEntry.id}")
         }
         get("/form/{id}") {
             val id = call.parameters.getOrFail<Int>("id").toInt()
             call.respond(FreeMarkerContent("show.ftl", mapOf("user" to users.find { it.id == id })))
-        }
-
-        post("form/{id}") {
-            val id = call.parameters.getOrFail<Int>("id").toInt()
-            val formParameters = call.receiveParameters()
-            when (formParameters.getOrFail("_action")) {
-                "update" -> {
-                    val index = users.indexOf(users.find { it.id == id })
-                    val title = formParameters.getOrFail("title")
-                    users[index].title = title
-                    call.respondRedirect("/form/$id")
-                }
-                "delete" -> {
-                    users.removeIf { it.id == id }
-                    call.respondRedirect("/form")
-                }
-            }
         }
 
 
