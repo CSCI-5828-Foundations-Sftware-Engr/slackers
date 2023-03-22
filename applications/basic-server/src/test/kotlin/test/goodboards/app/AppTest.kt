@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 
-class AppTest {
+class AppTest : BaseAppTest() {
 
     @Test
     fun testEmptyHome() = testApp {
@@ -16,9 +16,5 @@ class AppTest {
             assertEquals(200, response.status()?.value)
             assertTrue(response.content!!.contains("An example application using Kotlin and Ktor"))
         }
-    }
-
-    private fun testApp(callback: TestApplicationEngine.() -> Unit) {
-        withTestApplication({ module() }) { callback() }
     }
 }

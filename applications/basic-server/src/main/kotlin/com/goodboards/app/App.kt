@@ -22,6 +22,12 @@ fun Application.module() {
         get("/") {
             call.respond(FreeMarkerContent("index.ftl", mapOf("headers" to headers())))
         }
+        get("/form") {
+            call.respond(FreeMarkerContent("index.ftl", mapOf("headers" to headers())))
+        }
+        put("/form") {
+            call.respond(FreeMarkerContent("index.ftl", mapOf("headers" to headers())))
+        }
         static("images") { resources("images") }
         static("style") { resources("style") }
     }
