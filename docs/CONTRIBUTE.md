@@ -3,7 +3,8 @@
 1. We work in pairs
 2. We make branch from `main`
 3. We work on the branch together
-4. When we are ready to put that to main, we raise  PR to `main`, then make branch compatible
+4. When we are ready to put that to main, we raise  PR to `main`, this will give us visual indication that it is compatible
+5. Only `Rebase and Merge` or commands as below which achieve the same
    ```shell
     # Make sure local main is up to date
     git checkout main
