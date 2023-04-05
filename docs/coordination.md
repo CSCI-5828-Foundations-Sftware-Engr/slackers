@@ -1,0 +1,3 @@
+# How we coordinate
+
+TODO

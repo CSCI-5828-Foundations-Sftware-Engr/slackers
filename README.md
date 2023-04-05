@@ -27,25 +27,12 @@ that includes a single web application with two background workers.
 
 ### Technology stack
 
-This codebase is written in a language called [Kotlin](https://kotlinlang.org) that is able to run on the JVM with full
-Java compatibility.
-It uses the [Ktor](https://ktor.io) web framework, and runs on the [Netty](https://netty.io/) web server.
-HTML templates are written using [Freemarker](https://freemarker.apache.org).
-The codebase is tested with [JUnit](https://junit.org/) and uses [Gradle](https://gradle.org) to build a jarfile.
+Details: [link](technologies.md)
 
 ### Deployment
 We are deploying our applications in Heroku due to ease of use and free student credits :D
 
-#### Pipeline
-Dashboard : [link](https://dashboard.heroku.com/pipelines/c5cf5577-f25c-4549-b98c-ace5269770cb)
-
-We have a staging deployment up and production can be up  on a button-click. 
-
-#### Staging
-Staging : [link](https://slackers-csci-5828-staging-v2.herokuapp.com/)
-
-#### Production
-Production: [link](https://slackers-csci-5828-product-v1.herokuapp.com/)
+Details : [link](docs/deployment.md)
 
 ## Development
 
