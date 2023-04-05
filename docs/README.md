@@ -16,3 +16,4 @@
 4. [Design](design.md)
 5. [Processes](processes.md)
 6. [Coordination](coordination.md)
+7. [Iteration Planning and Work Distribution](iteration_planning.md)
