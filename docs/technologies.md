@@ -7,6 +7,9 @@
 | Web Server           | Netty             |
 | Templating           | Apache FreeMarker |
 | Build                | Gradle            |
+| Application Platform | Heroku            |
+| Database             | PostgreSQL        |
+| Queue                | Redis             | 
 
 
 This codebase is written in a language called [Kotlin](https://kotlinlang.org) that is able to run on the JVM with full

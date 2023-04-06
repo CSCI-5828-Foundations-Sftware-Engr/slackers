@@ -4,7 +4,9 @@
 2. We make branch from `main`
 3. We work on the branch together
 4. When we are ready to put that to main, we raise  PR to `main`, this will give us visual indication that it is compatible
-5. Only `Rebase and Merge` or commands as below which achieve the same
+5. The code should successfully compile.
+6. Test the changes locally by deploying them.
+7. Only `Rebase and Merge` or commands as below which achieve the same
    ```shell
     # Make sure local main is up to date
     git checkout main
@@ -23,6 +25,3 @@
     git push
     # PR should be automatically closed, if it doesn't discuss with team
    ```
-
-
-
