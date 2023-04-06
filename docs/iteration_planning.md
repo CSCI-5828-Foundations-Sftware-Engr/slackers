@@ -9,6 +9,7 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 ## Milestone #1 Game Pages
 
 **Anticipated Velocity:** 5
+
 **Actual Velocity:** X
 
 **Tasks:** 33, 34, 35, 36, 37 
