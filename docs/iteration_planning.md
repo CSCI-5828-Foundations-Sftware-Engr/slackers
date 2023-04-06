@@ -12,10 +12,22 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 
 **Actual Velocity:** X
 
-**Tasks:** 33, 34, 35, 36, 37 
-
-### Task 1: Deploy Postgres database in Staging and Production
+**Tasks:** Each will have 1 primary task holder, listed below. Most tasks will be done in pairs.
+- 33: Ibrahim
+- 34: Michelle
+- 35: Lin
+- 36: Khaled
+- 37: Tuan
 
 ## Milestone #2 Game News Feed
 
-TODO
+**Anticipated Velocity:** X
+
+**Actual Velocity:** X
+
+**Tasks:** Each will have 1 primary task holder, listed below. Most tasks will be done in pairs.
+- 38:
+- 39:
+- 40:
+- 41:
+- 42:
