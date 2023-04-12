@@ -2,6 +2,7 @@ package test.goodboards.app;
 
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
+import io.ktor.request.*
 import io.ktor.server.testing.*
 import org.junit.Ignore
 import org.junit.Test
@@ -10,14 +11,14 @@ import kotlin.test.assertTrue
 
 class PostFormTest: BaseAppTest() {
 
-    @Ignore
     @Test
     fun testPutFormRespondsWithName() = testApp {
-        handleRequest(HttpMethod.Post, "/form", {
-            FormDataContent(parametersOf("title", "Goodie")).toString()
-        }).apply{
+        handleRequest(HttpMethod.Post, "/form") {
+            addHeader(HttpHeaders.ContentType, ContentType.Application.FormUrlEncoded.toString())
+            setBody(listOf("title" to "ABCD").formUrlEncode())
+        }.apply{
                 assertEquals(200, response.status()?.value)
-                assertTrue(response.content!!.contains("?"))
+                assertTrue(response.content!!.contains("ABCD"))
         }
     }
 
