@@ -1,0 +1,14 @@
+{
+  "001": [{
+    "Name": "Uno",
+    "Description": "Friendship destroyer."
+  }],
+  "002": [{
+    "Name": "Chess",
+    "Description": "Mind bender."
+  }],
+  "003": [{
+    "Name": "Poker",
+    "Description": "Trickster raiser."
+  }]
+}
