@@ -8,3 +8,5 @@ include "components:data-collector"
 include "components:data-analyzer"
 include "components:workflow-support"
 include "components:db-interface"
+include 'integration-tests'
+
