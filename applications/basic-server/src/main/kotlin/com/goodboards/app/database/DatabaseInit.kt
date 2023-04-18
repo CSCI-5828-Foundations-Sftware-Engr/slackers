@@ -16,7 +16,8 @@ object DatabaseInit {
     fun readGameJsonIntoDB(jsonFilePath: String): Boolean{
 
             // Read Json
-            val jsonString = File(jsonFilePath).readText()
+            val jsonString = this::class.java.getResource(jsonFilePath)!!.readText(Charsets.UTF_8)!!
+
             val databaseCredential = getDatabaseCredentials()
 
             // Parse the JSON data

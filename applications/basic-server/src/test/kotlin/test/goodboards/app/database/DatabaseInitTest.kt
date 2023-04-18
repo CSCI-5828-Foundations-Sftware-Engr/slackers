@@ -37,4 +37,10 @@ class DatabaseInitTest {
         assertEquals(DATABASE_USERNAME, actualCredential.username)
         assertEquals(DATABASE_PASSWORD, actualCredential.password)
     }
+
+    @Test
+    fun testReadGameJsonIntoDBSuccess(){
+        DatabaseInit.readGameJsonIntoDB("game_info_test.json")
+
+    }
 }
