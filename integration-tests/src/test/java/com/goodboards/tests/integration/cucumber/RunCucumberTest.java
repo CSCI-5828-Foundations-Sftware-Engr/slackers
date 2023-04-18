@@ -1,4 +1,4 @@
-package io.cucumber.skeleton;
+package com.goodboards.tests.integration.cucumber;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;

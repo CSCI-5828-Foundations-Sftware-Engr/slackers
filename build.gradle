@@ -18,7 +18,7 @@ plugins {
 }
 
 subprojects {
-    if (name == "applications" || name == "components" || name == "integration-tests") return
+    if (name == "applications" || name == "components") return
 
     group "com.goodreads"
 
@@ -29,8 +29,6 @@ subprojects {
     repositories {
         mavenCentral()
     }
-
-    if (name == "integration-tests") return
 
     apply plugin: 'kotlin'
 
