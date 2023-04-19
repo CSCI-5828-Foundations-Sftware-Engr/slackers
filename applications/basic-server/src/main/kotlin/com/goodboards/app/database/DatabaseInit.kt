@@ -3,12 +3,20 @@ package com.goodboards.app.database
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.io.File
+import java.sql.Connection
 import java.sql.DriverManager
 import java.util.*
 
 object EnvHelper {
     fun getEnv(key: String): String = System.getenv(key)!!
 }
+object ConnectionHelper{
+    fun getConnection():Connection{
+        val databaseCredential = DatabaseInit.getDatabaseCredentials()
+        return DriverManager.getConnection(databaseCredential.url, databaseCredential.username, databaseCredential.password)
+    }
+}
+
 object DatabaseInit {
 
     val GAME_TABLE_NAME: String = "Games"
@@ -16,8 +24,8 @@ object DatabaseInit {
     fun readGameJsonIntoDB(jsonFilePath: String): Boolean{
 
             // Read Json
-            val jsonString = this::class.java.getResource(jsonFilePath)!!.readText(Charsets.UTF_8)!!
-
+            //val jsonString = File(jsonFilePath).readText(Charsets.UTF_8)
+            val jsonString = this::class.java.classLoader.getResource(jsonFilePath).readText()
             val databaseCredential = getDatabaseCredentials()
 
             // Parse the JSON data
@@ -28,7 +36,7 @@ object DatabaseInit {
             }
 
             // Connect to the Heroku database
-            DriverManager.getConnection(databaseCredential.url, databaseCredential.username, databaseCredential.password).use { conn -> {
+            ConnectionHelper.getConnection().use { conn -> {
                     for (game in games) {
                         val gameInsertStatement = getInsertGameStatement(UUID.randomUUID().toString(), game)
                         conn.createStatement().use {
