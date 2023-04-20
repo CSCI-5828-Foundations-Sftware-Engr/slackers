@@ -50,9 +50,9 @@ class DatabaseInitTest {
             val statement = mockk<Statement>()
             every{ connection.createStatement() } returns statement
             val preparedStatement = mockk<PreparedStatement>()
-            every { connection.prepareStatement("INSERT INTO goodboards.games(id, name, description) VALUES ('54228581-9c22-48ce-b775-41c06dd0f221', '\"UnoTest\"', '\"Friendship destroyer.\"');") } returns preparedStatement
-            every { connection.prepareStatement("INSERT INTO goodboards.games(id, name, description) VALUES ('54228581-9c22-48ce-b775-41c06dd0f221', '\"ChessTest\"', '\"Mind bender.\"');") } returns preparedStatement
-            every { connection.prepareStatement("INSERT INTO goodboards.games(id, name, description) VALUES ('54228581-9c22-48ce-b775-41c06dd0f221', '\"PokerTest\"', '\"Trickster raiser.\"');") } returns preparedStatement
+            every { connection.prepareStatement("INSERT INTO goodboards.games(id, name, description) VALUES ('54228581-9c22-48ce-b775-41c06dd0f221', 'UnoTest', 'Friendship destroyer.');") } returns preparedStatement
+            every { connection.prepareStatement("INSERT INTO goodboards.games(id, name, description) VALUES ('54228581-9c22-48ce-b775-41c06dd0f221', 'ChessTest', 'Mind bender.');") } returns preparedStatement
+            every { connection.prepareStatement("INSERT INTO goodboards.games(id, name, description) VALUES ('54228581-9c22-48ce-b775-41c06dd0f221', 'PokerTest', 'Trickster raiser.');") } returns preparedStatement
             every { preparedStatement.executeUpdate() } returns 0
             every { preparedStatement.close() } returns Unit
             every { connection.close() } returns Unit

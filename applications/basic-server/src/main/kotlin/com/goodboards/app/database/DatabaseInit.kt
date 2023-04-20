@@ -28,7 +28,7 @@ object DatabaseInit {
     val GAME_TABLE_NAME: String = "goodboards.games"
 
     fun getInsertGameStatement(id: String, jsonGame: JsonNode): String {
-        return "INSERT INTO $GAME_TABLE_NAME(id, name, description) VALUES ('${id}', '${jsonGame.get("Name")}', '${jsonGame.get("Description")}');"
+        return "INSERT INTO $GAME_TABLE_NAME(id, name, description) VALUES ('${id}', '${jsonGame.get("Name").textValue()}', '${jsonGame.get("Description").textValue()}');"
     }
 
     fun readGameJsonIntoDB(jsonFilePath: String): Boolean{
