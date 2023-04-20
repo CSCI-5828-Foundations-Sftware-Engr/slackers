@@ -20,7 +20,7 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 - 37: Tuan (pair: Abhishek)
 - 44: Abhishek (pair: Tuan)
 
-Summary: 
+### Summary: 
 - We have a basic webpage that lists all games on the homepage
 - Each individual game is clickable to get all related news
 - We created middleware for the database so all of our apps have an API to interact with the database
@@ -29,10 +29,19 @@ Summary:
   - Integration tests are in the works
   - All contributions of this iteration were tested manually and with unit tests
 
-**Testing**
+### Testing
+
+#### Unit
 
 We have created unit tests for all components developed so far. Tests are built with Gradle and invoked every time we push via Github Actions.
 
+#### Integration
+Our integration test suite is currently under development as part of [Task #44](https://github.com/CSCI-5828-Foundations-Sftware-Engr/slackers/issues/44)
+We are planning for  **Ktor Client + Jsoup** based  approach to it. 
+
+#### Manual
+Since the **integration** tests are not yet ready, we manually tested our two pages
+* Homepage which Lists the games and Game Page which shows details.
 
 ## Milestone #2 Game News Feed
 
