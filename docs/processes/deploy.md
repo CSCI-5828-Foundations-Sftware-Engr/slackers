@@ -19,11 +19,10 @@
 
 
 ## Integration Tests
-We have ktor-client + Jsoup based approach to automatically `integration test` our application. 
+We have ktor-client + Jsoup based approach to automatically **integration test** our application. 
 Since the sole user interface are HTML Views, we will use ktor-client to retrieve the views using API and then use Jsoup Parse combinded with junit asserts to test for the expectations. 
 
-We are locating this Junit based suite in `integration-tests` and is separate from the whole project build and can be run in the integration-test directory.
+We are locating this Junit based suite in `integration` and is separate from the whole project build and can be run in the integration-test directory.
 
-`../gradlew integrations-tests:test` which is also part of the `:build` task as of now.
+`../gradlew test` which is also part of the `:build` task as of now.
 We are using integration tests as the gate-keeper for staging promotion to deployment, it is currently less flexible.
-
