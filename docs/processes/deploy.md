@@ -16,3 +16,14 @@
 2. We wrote a `unit test` to verify database `credentials`.
 3. We wrote another `unit test` to verify the number of statement updates, and content of each statement.
 4. We successfully tested the class functionality on local db (correctly added game info from .json file into local db)
+
+
+## Integration Tests
+We have ktor-client + Jsoup based approach to automatically `integration test` our application. 
+Since the sole user interface are HTML Views, we will use ktor-client to retrieve the views using API and then use Jsoup Parse combinded with junit asserts to test for the expectations. 
+
+We are locating this Junit based suite in `integration-tests` and is separate from the whole project build and can be run in the integration-test directory.
+
+`../gradlew integrations-tests:test` which is also part of the `:build` task as of now.
+We are using integration tests as the gate-keeper for staging promotion to deployment, it is currently less flexible.
+
