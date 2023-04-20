@@ -13,11 +13,26 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 **Actual Velocity:** X
 
 **Tasks:** Each will have 1 primary task holder, listed below. Most tasks will be done in pairs.
-- 33: Ibrahim
-- 34: Michelle
-- 35: Lin
-- 36: Khaled
-- 37: Tuan
+- 33: Ibrahim (pair: Michelle)
+- 34: Michelle (pair: Ibrahim)
+- 35: Lin (pair: Khaled)
+- 36: Khaled (pair: Lin)
+- 37: Tuan (pair: Abhishek)
+- 44: Abhishek (pair: Tuan)
+
+Summary: 
+- We have a basic webpage that lists all games on the homepage
+- Each individual game is clickable to get all related news
+- We created middleware for the database so all of our apps have an API to interact with the database
+- Database has been created and initialized in all environments
+- Testing (see section below for elabortion)
+  - Integration tests are in the works
+  - All contributions of this iteration were tested manually and with unit tests
+
+**Testing**
+
+We have created unit tests for all components developed so far. Tests are built with Gradle and invoked every time we push via Github Actions.
+
 
 ## Milestone #2 Game News Feed
 
