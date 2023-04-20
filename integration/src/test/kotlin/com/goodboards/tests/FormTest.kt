@@ -29,7 +29,6 @@ class FormTest {
         assertTrue(htmlResponse.body().select("input[type=text]").isNotEmpty())
         // There is a input submit element
         assertTrue(htmlResponse.body().select("input[type=submit]").isNotEmpty())
-
     }
 
 }
