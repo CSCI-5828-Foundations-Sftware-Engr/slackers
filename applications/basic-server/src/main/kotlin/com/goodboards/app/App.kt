@@ -63,6 +63,10 @@ private fun PipelineContext<Unit, ApplicationCall>.headers(): MutableMap<String,
 fun main() {
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     val port = System.getenv("PORT")?.toInt() ?: 8888
-    DatabaseInit.readGameJsonIntoDB("game_info.json");
+    try {
+        DatabaseInit.readGameJsonIntoDB("game_info.json");
+    } catch (e: Exception) {
+        println("Error reading game JSON, $e")
+    }
     embeddedServer(Netty, port, watchPaths = listOf("basic-server"), module = { module() }).start()
 }

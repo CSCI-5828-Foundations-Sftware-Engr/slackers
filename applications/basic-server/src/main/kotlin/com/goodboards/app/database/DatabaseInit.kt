@@ -19,7 +19,7 @@ object UUIDHelper{
 object ConnectionHelper{
     fun getConnection():Connection{
         val databaseCredential = DatabaseInit.getDatabaseCredentials()
-        return DriverManager.getConnection(databaseCredential.url, databaseCredential.username, databaseCredential.password)
+        return DriverManager.getConnection("jdbc:" + databaseCredential.url, databaseCredential.username, databaseCredential.password)
     }
 }
 
