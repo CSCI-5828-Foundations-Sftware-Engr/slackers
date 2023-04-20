@@ -12,4 +12,7 @@
 3. You can use the `promote` option to promote such a version to production
 
 ## Database initialization
-
+1. We created `DatabaseInit` class to read game info from `game_info.json` into postgres db.
+2. We wrote a `unit test` to verify database `credentials`.
+3. We wrote another `unit test` to verify the number of statement updates, and content of each statement.
+4. We successfully tested the class functionality on local db (correctly added game info from .json file into local db)
