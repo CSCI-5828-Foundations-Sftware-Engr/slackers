@@ -1,6 +1,4 @@
-name: gradle-build
-on:
-  push:
+name: integration-test-gradle
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,6 +11,6 @@ jobs:
           java-version: 16
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build with Gradle
+      - name: Run integration test with gradle
         working-directory: "integration"
         run: ../gradlew test
