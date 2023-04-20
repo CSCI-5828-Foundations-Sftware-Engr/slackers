@@ -66,7 +66,7 @@ fun main() {
     try {
         DatabaseInit.readGameJsonIntoDB("game_info.json");
     } catch (e: Exception) {
-        println("Error reading game JSON, $e")
+        logger.error("Error reading game JSON, $e")
     }
     embeddedServer(Netty, port, watchPaths = listOf("basic-server"), module = { module() }).start()
 }
