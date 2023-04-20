@@ -33,6 +33,24 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 
 #### Unit
 
+Unit Tests were written for each of the changesets. 
+
+* `AppTest.kt`, `GetFormTest.kt` **Count : 4**
+
+  Test the routes for Home Page and Contact Page.
+
+* `DatabaseInitTest.kt` **Count: 2**
+
+  Test the database initialization module responsible for populating the required tables with curated data.
+
+* `DBConnectionTest.kt` **Count: 6**
+
+  Tests the Database Connection utilities
+
+* `DBInterfaceTest.kt` **Count: 9**
+
+  Tests the Database Query Interface
+
 We have created unit tests for all components developed so far. Tests are built with Gradle and invoked every time we push via Github Actions.
 
 #### Integration
