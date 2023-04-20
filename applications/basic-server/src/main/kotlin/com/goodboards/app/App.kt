@@ -12,6 +12,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.util.*
 import io.ktor.util.pipeline.*
+import org.slf4j.LoggerFactory
 import models.Game
 import java.util.*
 
@@ -23,6 +24,8 @@ val games = mutableListOf(
     Game.newEntry("Uno", "typical friendship destroying game"),
     Game.newEntry("Uno", "typical friendship destroying game"),
 )
+
+private val logger = LoggerFactory.getLogger("App.kt")
 
 fun Application.module() {
     install(DefaultHeaders)

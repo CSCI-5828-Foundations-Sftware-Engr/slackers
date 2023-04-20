@@ -10,6 +10,12 @@ import java.util.*
 object EnvHelper {
     fun getEnv(key: String): String = System.getenv(key)!!
 }
+
+object UUIDHelper{
+    fun randomUUID(): UUID = UUID.randomUUID()!!
+}
+
+
 object ConnectionHelper{
     fun getConnection():Connection{
         val databaseCredential = DatabaseInit.getDatabaseCredentials()
@@ -19,7 +25,11 @@ object ConnectionHelper{
 
 object DatabaseInit {
 
-    val GAME_TABLE_NAME: String = "Games"
+    val GAME_TABLE_NAME: String = "goodboards.games"
+
+    fun getInsertGameStatement(id: String, jsonGame: JsonNode): String {
+        return "INSERT INTO $GAME_TABLE_NAME(id, name, description) VALUES ('${id}', '${jsonGame.get("Name")}', '${jsonGame.get("Description")}');"
+    }
 
     fun readGameJsonIntoDB(jsonFilePath: String): Boolean{
 
@@ -31,22 +41,17 @@ object DatabaseInit {
             // Parse the JSON data
             val objectMapper = ObjectMapper()
             val games : JsonNode = objectMapper.readTree(jsonString)
-            fun getInsertGameStatement(id: String, jsonGame: JsonNode): String {
-                return "INSERT INTO $GAME_TABLE_NAME (id, name, description) VALUES ( , ${jsonGame.get("Name")}, ${jsonGame.get("Description")})"
-            }
+
 
             // Connect to the Heroku database
-            ConnectionHelper.getConnection().use { conn -> {
-                    for (game in games) {
-                        val gameInsertStatement = getInsertGameStatement(UUID.randomUUID().toString(), game)
-                        conn.createStatement().use {
-                            val preparedStatement = conn.prepareStatement(gameInsertStatement)
-                            preparedStatement.executeUpdate()
-                            preparedStatement.close()
-                        }
-                    }
+            val conn = ConnectionHelper.getConnection()!!
+            for (game in games) {
+                val gameInsertStatement = getInsertGameStatement(UUIDHelper.randomUUID().toString(), game)
+                conn.createStatement().use {
+                    val preparedStatement = conn.prepareStatement(gameInsertStatement)
+                    preparedStatement.executeUpdate()
+                    preparedStatement.close()
                 }
-
             }
 
             return true;
