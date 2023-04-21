@@ -4,7 +4,8 @@ We have broken down tasks such that each technical task should have roughly equi
 For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a velocity of 5 (which we selected since we have 6 members and 5 is roughly equal), we should take 2 iterations. Note that this does not include some of our stretch goal features, including creating user accounts and tracking games. There will also likely be additional stories for testing and CI/CD infrastructure.
 
 **Burndown Chart**
-![Burndown Chart](hw6_burndown.png)
+![Burndown Chart](images/hw7_burndown.png)
+_Note: Ticket values look slightly higher in the burndown because our chart includes both Story and Task issues. We completed 5 points in Iteration 1 from 2 stories, hence the value 7._ 
 
 ## Milestone #1 Game Pages
 
@@ -25,7 +26,7 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 - Each individual game is clickable to get all related news
 - We created middleware for the database so all of our apps have an API to interact with the database
 - Database has been created and initialized in all environments
-- Testing (see section below for elabortion)
+- Testing (see section below for elaboration)
   - Integration tests are in the works
   - All contributions of this iteration were tested manually and with unit tests
 
@@ -33,7 +34,7 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 
 #### Unit
 
-Unit Tests were written for each of the changesets. 
+Unit Tests were written for each of the changesets. Current Status: PASSING
 
 * `AppTest.kt`, `GetFormTest.kt` **Count : 4**
 
@@ -69,9 +70,9 @@ Since the **integration** tests are not yet ready, we manually tested our two pa
 
 **Tasks:** Each will have 1 primary task holder, listed below. Most tasks will be done in pairs.
 
-- 38: Tuan
-- 39: Ibrahim & Tuan
-- 40: Michelle & Ibrahim
-- 41: Lin
-- 42: Khaled 
-- 44: Abhishek
+- 38: Tuan (pair: Abhishek)
+- 39: Ibrahim (pair: Tuan)
+- 40: Michelle (pair: Ibrahim)
+- 41: Lin (pair: Michelle)
+- 42: Khaled (pair: Lin)
+- 44: Abhishek (pair: Khaled)
