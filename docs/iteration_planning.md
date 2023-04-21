@@ -10,7 +10,7 @@ For our MVP, we anticipate roughly 10 technical tasks for user stories. Given a 
 
 **Anticipated Velocity:** 5
 
-**Actual Velocity:** X
+**Actual Velocity:** 5
 
 **Tasks:** Each will have 1 primary task holder, listed below. Most tasks will be done in pairs.
 - 33: Ibrahim (pair: Michelle)
@@ -63,13 +63,15 @@ Since the **integration** tests are not yet ready, we manually tested our two pa
 
 ## Milestone #2 Game News Feed
 
-**Anticipated Velocity:** X
+**Anticipated Velocity:** 5
 
 **Actual Velocity:** X
 
 **Tasks:** Each will have 1 primary task holder, listed below. Most tasks will be done in pairs.
-- 38:
-- 39:
-- 40:
-- 41:
-- 42:
+
+- 38: Tuan
+- 39: Ibrahim & Tuan
+- 40: Michelle & Ibrahim
+- 41: Lin
+- 42: Khaled 
+- 44: Abhishek
