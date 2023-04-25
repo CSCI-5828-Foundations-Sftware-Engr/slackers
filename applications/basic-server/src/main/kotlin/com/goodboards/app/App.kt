@@ -15,22 +15,11 @@ import io.ktor.server.netty.*
 import io.ktor.util.*
 import io.ktor.util.pipeline.*
 import org.slf4j.LoggerFactory
-import com.goodboards.app.game.Game
 import com.goodboards.app.game.GamesHelper
 import java.util.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
-
-
-//val games = mutableListOf(
-//    Game("Uno", "typical friendship destroying game"),
-//    Game("Uno", "typical friendship destroying game"),
-//    Game("Uno", "typical friendship destroying game"),
-//    Game("Uno", "typical friendship destroying game"),
-//    Game("Uno", "typical friendship destroying game"),
-//    Game("Uno", "typical friendship destroying game"),
-//)
 
 private val logger = LoggerFactory.getLogger("App.kt")
 val client = HttpClient(CIO) {
