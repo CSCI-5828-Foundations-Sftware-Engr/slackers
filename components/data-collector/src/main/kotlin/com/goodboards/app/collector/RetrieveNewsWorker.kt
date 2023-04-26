@@ -4,10 +4,10 @@ import com.goodboards.workflow.Worker
 import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 
-class ExampleWorker(override val name: String = "data-collector") : Worker<ExampleTask> {
+class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<RetrieveNewsTask> {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
-    override fun execute(task: ExampleTask) {
+    override fun execute(task: RetrieveNewsTask) {
         runBlocking {
             logger.info("starting data collection.")
 
