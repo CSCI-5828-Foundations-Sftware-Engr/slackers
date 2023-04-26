@@ -57,6 +57,7 @@ fun Application.module() {
         get("/contact") {
             call.respond(FreeMarkerContent("contact.ftl", mapOf("games" to GamesHelper.getAllGames())))
         }
+
         get("/games") {
             call.respond(FreeMarkerContent("games.ftl", mapOf("games" to GamesHelper.getAllGames())))
         }
