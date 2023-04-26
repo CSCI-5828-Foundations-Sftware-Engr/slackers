@@ -1,6 +1,6 @@
 package com.goodboards.app.analyzer
 
-import com.goodreads.workflow.WorkScheduler
+import com.goodboards.workflow.WorkScheduler
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*

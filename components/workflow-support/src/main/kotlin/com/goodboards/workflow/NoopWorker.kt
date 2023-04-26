@@ -1,4 +1,4 @@
-package com.goodreads.workflow
+package com.goodboards.workflow
 
 import org.slf4j.LoggerFactory
 

@@ -20,7 +20,7 @@ plugins {
 subprojects {
     if (name == "applications" || name == "components") return
 
-    group "com.goodreads"
+    group "com.goodboards"
 
     apply plugin: 'kotlin'
 

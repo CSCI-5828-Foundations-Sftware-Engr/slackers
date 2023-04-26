@@ -16,7 +16,7 @@
 
 // Inspired by code from the Conductor project available at https://github.com/Netflix/conductor
 
-package com.goodreads.workflow
+package com.goodboards.workflow
 
 import org.slf4j.LoggerFactory
 import java.util.concurrent.Executors

@@ -1,6 +1,6 @@
 package com.goodboards.app.analyzer
 
-import com.goodreads.workflow.WorkFinder
+import com.goodboards.workflow.WorkFinder
 import org.slf4j.LoggerFactory
 
 class ExampleWorkFinder : WorkFinder<ExampleTask> {
