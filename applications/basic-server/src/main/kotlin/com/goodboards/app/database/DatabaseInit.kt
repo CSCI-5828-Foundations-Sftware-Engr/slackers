@@ -20,6 +20,7 @@ object ConnectionHelper{
     }
 }
 
+// TODO move to use DBInterface
 object DatabaseInit {
 
     val GAME_TABLE_NAME: String = "goodboards.games"

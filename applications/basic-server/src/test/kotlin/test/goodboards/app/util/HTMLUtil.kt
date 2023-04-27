@@ -1,4 +1,4 @@
-package test.goodboards.app
+package test.goodboards.app.util
 
 import org.jsoup.nodes.Element
 object HTMLUtil {

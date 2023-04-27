@@ -59,8 +59,6 @@ fun Application.module() {
 
         get("/game/{id}") {
             val id = call.parameters.getOrFail<String>("id")
-//            val news: NewsResponse = client.get("https://newsapi.org/v2/everything?q=board_games&apiKey=18af37ae1b52421d808c96babcf7db7b")
-
             call.respond(FreeMarkerContent("game.ftl", mapOf("game" to GamesHelper.getAllGames().find { it.id == id })))
         }
         get("/game/{id}/new") {

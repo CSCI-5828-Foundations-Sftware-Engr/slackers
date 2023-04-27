@@ -2,16 +2,15 @@
 <#import "_layout.ftl" as layout />
 <@layout.header>
     <div>
-        <h1 class="text-4xl text-center mb-4 text-[#cdc9cb]">
+        <h1 class="game-name text-4xl text-center mb-4 text-[#cdc9cb]">
             ${game.name}
         </h1>
         <hr>
-        <div class="mb-4 text-[#cdc9cb] px-4 py-5">
+        <div class="game-description mb-4 text-[#cdc9cb] px-4 py-5">
             <p>
                 ${game.description}
             </p>
         </div>
-        news
 <#--        <div>-->
 <#--            <div class="w-full flex items-center justify-center">-->
 

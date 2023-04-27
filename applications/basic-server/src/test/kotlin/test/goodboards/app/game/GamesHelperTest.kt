@@ -2,8 +2,10 @@ package test.goodboards.app.game
 
 import com.goodboards.app.game.Game
 import com.goodboards.app.game.GamesHelper
+import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.verify
+import org.junit.After
 import org.junit.Test
 import test.goodboards.app.util.DBMock
 import kotlin.test.assertEquals
@@ -25,5 +27,10 @@ class GamesHelperTest {
             assertEquals(it.first.name, it.second.name)
             assertEquals(it.first.description, it.second.description)
         }
+    }
+
+    @After
+    fun clearSetup() {
+        clearAllMocks()
     }
 }

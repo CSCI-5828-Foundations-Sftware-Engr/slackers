@@ -6,6 +6,7 @@ import com.goodboards.app.database.DatabaseInit
 import com.goodboards.app.database.UUIDHelper
 import io.mockk.*
 import org.junit.Test
+import test.goodboards.app.util.DBMock
 import test.goodboards.app.util.MockUtil
 import java.sql.Connection
 import java.sql.PreparedStatement
@@ -18,14 +19,6 @@ import kotlin.test.assertEquals
 class DatabaseInitTest {
 
     companion object {
-
-        const val DATABASE_URL = "postgresql:localhost"
-
-        const val DATABASE_USERNAME = "username"
-        const val DATABASE_PASSWORD = "password"
-
-
-
         fun mockUUID(){
             mockkObject(UUIDHelper)
             val uid = UUID.fromString("54228581-9c22-48ce-b775-41c06dd0f221")
@@ -51,11 +44,11 @@ class DatabaseInitTest {
     }
     @Test
     fun testGetsCredential() {
-        MockUtil.mockEnvironmentCredentials()
+        DBMock.mockDBConnection()
         val actualCredential = DBHelper.getDatabaseCredentials()
-        assertEquals(DATABASE_URL, actualCredential.url)
-        assertEquals(DATABASE_USERNAME, actualCredential.username)
-        assertEquals(DATABASE_PASSWORD, actualCredential.password)
+        assertEquals(DBMock.DATABASE_URL, actualCredential.url)
+        assertEquals(DBMock.DATABASE_USERNAME, actualCredential.username)
+        assertEquals(DBMock.DATABASE_PASSWORD, actualCredential.password)
     }
 
     @Test

@@ -11,6 +11,11 @@ import io.mockk.mockkObject
 import java.sql.Connection
 
 object DBMock {
+
+    val DATABASE_URL = "fakeURL"
+    val DATABASE_USERNAME = "fakeUsername"
+    val DATABASE_PASSWORD = "fakePassword"
+
     fun mockDBConnection(): Unit {
         mockkObject(SystemWrapper)
         every { SystemWrapper.getenv("DATABASE_URL") } returns "fakeURL"
