@@ -14,7 +14,6 @@ class AppTest : BaseAppTest() {
     fun testHomePage() = testApp {
         handleRequest(HttpMethod.Get, "/").apply {
             assertEquals(200, response.status()?.value)
-
             assertTrue(response.content!!.contains("GOODBOARDS"))
         }
     }

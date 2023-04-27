@@ -51,7 +51,7 @@ CREATE TABLE goodboards.news (
 - Uses the JDBC Java library to connect
 - Requires 3 environment variables. Set using `export <VARIABLE>=<VALUE>` or update `.bashrc`
   - `DATABASE_URL`: postgres host 
-    - For a local instance, it should look like: `postgresql://localhost:5432/goodboards`
+    - For a local instance, it should look like: `postgresql://localhost:5432/`
     - Note that `goodboards` in the URL represents the database name
   - `DATABASE_USERNAME`: Postgres username
   - `DATABASE_PASSWORD`: Postgres password

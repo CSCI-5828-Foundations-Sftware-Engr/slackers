@@ -2,11 +2,8 @@ package test.goodboards.app
 
 import io.ktor.http.*
 import io.ktor.server.testing.*
-import com.goodboards.app.kt.Game
-import org.junit.Ignore
 import org.junit.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class GetFormTest : BaseAppTest() {
 

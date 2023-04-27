@@ -15,30 +15,22 @@ import io.ktor.server.netty.*
 import io.ktor.util.*
 import io.ktor.util.pipeline.*
 import org.slf4j.LoggerFactory
-import com.goodboards.app.kt.Game
+import com.goodboards.app.game.Game
+import com.goodboards.app.game.GamesHelper
 import java.util.*
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
-import com.goodboards.app.kt.NewsResponse
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
-import io.ktor.request.*
 
 
-val games = mutableListOf(
-    Game("Uno", "typical friendship destroying game"),
-    Game("Uno", "typical friendship destroying game"),
-    Game("Uno", "typical friendship destroying game"),
-    Game("Uno", "typical friendship destroying game"),
-    Game("Uno", "typical friendship destroying game"),
-    Game("Uno", "typical friendship destroying game"),
-)
+//val games = mutableListOf(
+//    Game("Uno", "typical friendship destroying game"),
+//    Game("Uno", "typical friendship destroying game"),
+//    Game("Uno", "typical friendship destroying game"),
+//    Game("Uno", "typical friendship destroying game"),
+//    Game("Uno", "typical friendship destroying game"),
+//    Game("Uno", "typical friendship destroying game"),
+//)
 
 private val logger = LoggerFactory.getLogger("App.kt")
 val client = HttpClient(CIO) {
@@ -59,29 +51,27 @@ fun Application.module() {
     }
     install(Routing) {
         get {
-            call.respond(FreeMarkerContent("games.ftl", mapOf("games" to games)))
+            call.respond(FreeMarkerContent("games.ftl", mapOf("games" to GamesHelper.getAllGames())))
         }
         get("/contact") {
-            call.respond(FreeMarkerContent("contact.ftl", mapOf("games" to games)))
+            call.respond(FreeMarkerContent("contact.ftl", mapOf("games" to GamesHelper.getAllGames())))
         }
-        get("/games") {
-            call.respond(FreeMarkerContent("games.ftl", mapOf("games" to games)))
-        }
+
         get("/game/{id}") {
-            val id = call.parameters.getOrFail<Int>("id").toInt()
+            val id = call.parameters.getOrFail<String>("id")
 //            val news: NewsResponse = client.get("https://newsapi.org/v2/everything?q=board_games&apiKey=18af37ae1b52421d808c96babcf7db7b")
 
-            call.respond(FreeMarkerContent("game.ftl", mapOf("game" to games.find { it.id == id })))
+            call.respond(FreeMarkerContent("game.ftl", mapOf("game" to GamesHelper.getAllGames().find { it.id == id })))
         }
         get("/game/{id}/new") {
-            val id = call.parameters.getOrFail<Int>("id").toInt()
-            call.respond(FreeMarkerContent("newGame.ftl", mapOf("game" to games.find { it.id == id })))
+            val id = call.parameters.getOrFail<String>("id")
+            call.respond(FreeMarkerContent("newGame.ftl", mapOf("game" to GamesHelper.getAllGames().find { it.id == id })))
         }
         get("/contact") {
-            call.respond(FreeMarkerContent("contact.ftl", mapOf("games" to games)))
+            call.respond(FreeMarkerContent("contact.ftl", mapOf("games" to GamesHelper.getAllGames())))
         }
         get("/games") {
-            call.respond(FreeMarkerContent("games.ftl", mapOf("games" to games)))
+            call.respond(FreeMarkerContent("games.ftl", mapOf("games" to GamesHelper.getAllGames())))
         }
 
         static("images") { resources("images") }

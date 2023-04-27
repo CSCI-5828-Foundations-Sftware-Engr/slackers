@@ -1,19 +1,16 @@
 package test.goodboards.app.database
 
 import com.goodboards.app.database.ConnectionHelper
+import com.goodboards.app.database.DBHelper
 import com.goodboards.app.database.DatabaseInit
-import com.goodboards.app.database.EnvHelper
+import com.goodboards.app.util.EnvHelper
 import com.goodboards.app.database.UUIDHelper
 import io.mockk.*
-import org.junit.Before
-import org.junit.BeforeClass
 import org.junit.Test
 import java.sql.Connection
-import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.Statement
 import java.util.*
-import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 
 
@@ -64,7 +61,7 @@ class DatabaseInitTest {
     @Test
     fun testGetsCredential() {
         mockEnvironmentCredentials()
-        val actualCredential = DatabaseInit.getDatabaseCredentials()
+        val actualCredential = DBHelper.getDatabaseCredentials()
         assertEquals(DATABASE_URL, actualCredential.url)
         assertEquals(DATABASE_USERNAME, actualCredential.username)
         assertEquals(DATABASE_PASSWORD, actualCredential.password)
