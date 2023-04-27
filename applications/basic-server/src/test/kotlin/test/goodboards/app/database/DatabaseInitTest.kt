@@ -3,6 +3,7 @@ package test.goodboards.app.database
 import com.goodboards.app.database.DBHelper
 import com.goodboards.app.database.DatabaseInit
 import com.goodboards.app.database.UUIDHelper
+import com.goodboards.app.util.EnvHelper
 import io.mockk.*
 import org.junit.Test
 import test.goodboards.app.util.DBMock

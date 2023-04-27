@@ -1,6 +1,6 @@
 package com.goodboards.app.kt
 
-class PlayerGameOptions(players: List<Player>, games: List<Game>) {
+class PlayerGameOptions(players: List<Player>, games: MutableList<com.goodboards.app.game.Game>) {
     var players = players
         get() = field
         set(value) {

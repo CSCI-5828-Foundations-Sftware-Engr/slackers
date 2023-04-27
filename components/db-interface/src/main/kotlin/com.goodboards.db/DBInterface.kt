@@ -21,6 +21,12 @@ class DBInterface(dbConnection: DBConnection) {
         return games
     }
 
+    fun getNewsForGame(gameName: String): List<News> {
+        // TODO implement function to get news
+        return mutableListOf( News("id", "author", "title", "1@2.com", "linktoimage?", "content"))
+    }
+
+
     fun getGameById(id: String) : Game {
         val statement = "SELECT * FROM goodboards.games WHERE id='$id';"
         val query = connection.prepareStatement(statement)
