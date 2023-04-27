@@ -2,6 +2,7 @@ package com.goodboards.app.database
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.goodboards.db.DriverManagerWrapper
 import java.io.File
 import java.sql.Connection
 import java.sql.DriverManager
@@ -15,7 +16,7 @@ object UUIDHelper{
 object ConnectionHelper{
     fun getConnection():Connection{
         val databaseCredential = DBHelper.getDatabaseCredentials()
-        return DriverManager.getConnection("jdbc:" + databaseCredential.url, databaseCredential.username, databaseCredential.password)
+        return DriverManagerWrapper.getConnection("jdbc:" + databaseCredential.url, databaseCredential.username, databaseCredential.password)!!
     }
 }
 

@@ -13,15 +13,15 @@
                 class="h-40 w-40 rounded-t-lg object-cover"
                 src="https://picsum.photos/200"
                 alt="" />
-              <div class="flex flex-col justify-start p-6">
+              <div class="game flex flex-col justify-start p-6">
                 <h5
                   class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-                  <a class="font-medium text-[#ce5936] dark:text-blue-500 hover:underline" href="/game/${game.id}">Game: ${game.name} </a>
+                  <a class="game-name font-medium text-[#ce5936] dark:text-blue-500 hover:underline" href="/game/${game.id}">Game: ${game.name} </a>
                 </h5>
-                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                <p class="game-description mb-4 text-base text-neutral-600 dark:text-neutral-200">
                   ${game.description}
                 </p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-300">
+                <p class="game-details text-xs text-neutral-500 dark:text-neutral-300">
                   See details
                 </p>
               </div>

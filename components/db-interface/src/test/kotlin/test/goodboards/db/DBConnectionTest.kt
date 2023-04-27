@@ -6,22 +6,15 @@ import com.goodboards.db.SystemWrapper
 import org.junit.Test
 import kotlin.test.*
 import io.mockk.*
+import test.goodboards.db.util.DBMockUtil
 import java.sql.Connection
 
 class DBConnectionTest {
 
+
     @BeforeTest
     fun setup() {
-        // Mock System to get env variables
-        mockkObject(SystemWrapper)
-        every { SystemWrapper.getenv("DATABASE_URL") } returns "fakeURL"
-        every { SystemWrapper.getenv("DATABASE_USERNAME") } returns "fakeUsername"
-        every { SystemWrapper.getenv("DATABASE_PASSWORD") } returns "fakePassword"
-
-        // Mock DriverManager to get connection
-        val mockedConnection: Connection = mockk(relaxed = true)
-        mockkObject(DriverManagerWrapper)
-        every { DriverManagerWrapper.getConnection("jdbc:fakeURL", "fakeUsername", "fakePassword") } returns mockedConnection
+        DBMockUtil.mockDBConnection()
     }
 
     @Test

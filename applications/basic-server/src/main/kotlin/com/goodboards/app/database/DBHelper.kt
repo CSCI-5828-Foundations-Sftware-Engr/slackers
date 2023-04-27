@@ -1,8 +1,8 @@
 package com.goodboards.app.database
 
-import com.goodboards.app.util.EnvHelper
 import com.goodboards.db.DBConnection
 import com.goodboards.db.DBInterface
+import com.goodboards.db.SystemWrapper
 
 object DBHelper {
 
@@ -23,9 +23,9 @@ object DBHelper {
         }
 
         fun getDatabaseCredentials() : DatabaseInit.DatabaseCredential {
-            val DB_URL: String = EnvHelper.getEnv("DATABASE_URL")
-            val DB_USENAME : String =  EnvHelper.getEnv("DATABASE_USERNAME")
-            val DB_PASSWORD : String = EnvHelper.getEnv("DATABASE_PASSWORD")
+            val DB_URL: String = SystemWrapper.getenv("DATABASE_URL")
+            val DB_USENAME : String =  SystemWrapper.getenv("DATABASE_USERNAME")
+            val DB_PASSWORD : String = SystemWrapper.getenv("DATABASE_PASSWORD")
             return DatabaseInit.DatabaseCredential(DB_URL, DB_USENAME, DB_PASSWORD)
         }
 }
