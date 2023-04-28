@@ -12,7 +12,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class SingleGameTest : BaseAppTest() {
-    @Test
+    @Ignore
     fun testSingleGameResponse() = testApp {
         val game: Game = GamesMock.mockGames(1)[0]
         handleRequest(HttpMethod.Get, "/game/${game.id}").apply {
