@@ -9,4 +9,6 @@ include "components:data-analyzer"
 include "components:workflow-support"
 include "components:db-interface"
 include 'integration-tests'
+include 'components:redis-interface'
+findProject(':components:redis-interface')?.name = 'redis-interface'
 

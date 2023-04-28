@@ -80,6 +80,29 @@ private fun PipelineContext<Unit, ApplicationCall>.headers(): MutableMap<String,
 }
 
 fun main() {
+
+    // TODO: remove the redis interface demo
+    // NOTE: if you want to test, need to import redis-interface component
+    //       in the build.gradle file for basic-server
+    /*
+    val redisInterface = RedisInterface()
+    val games = arrayOf("""{
+    "Name": "Uno",
+    "Description": "Friendship destroyer."
+  }""",
+  """{
+    "Name": "Chess  ",
+    "Description": "Mind bender."
+  }""",
+  """{
+    "Name": "Poker",
+    "Description": "Trickster raiser."
+  }""")
+    redisInterface.pushToList(key = "Games", *games)
+
+    println(redisInterface.getFromList(key = "Games", count = 10))
+    */
+
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     val port = System.getenv("PORT")?.toInt() ?: 8888
     try {
