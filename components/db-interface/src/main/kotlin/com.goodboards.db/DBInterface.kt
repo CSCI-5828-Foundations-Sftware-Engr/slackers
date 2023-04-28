@@ -23,7 +23,7 @@ class DBInterface(dbConnection: DBConnection) {
 
     fun getNewsForGame(gameName: String): List<News> {
         // TODO implement function to get news
-        return mutableListOf( News("id", "author", "title", "1@2.com", "linktoimage?", "content"))
+        return mutableListOf( News("id", "author", "title", "1@2.com"))
     }
 
 

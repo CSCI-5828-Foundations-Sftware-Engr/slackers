@@ -51,6 +51,10 @@ fun Application.module() {
         get("/game/{id}") {
             val id = call.parameters.getOrFail<String>("id")
             call.respond(FreeMarkerContent("game.ftl", mapOf("game" to GamesHelper.getAllGames().find { it.id == id })))
+            val game = GamesHelper.getAllGames().find { it.id == id }
+            val mockNewsData = game?.let { it1 -> NewsHelper.getNewsForGame(it1.name) }
+            val gameNewsData = game?.let { it1 -> GameNews(id, game.name, it1.description, mockNewsData!!) }
+            call.respond(FreeMarkerContent("game.ftl", mapOf("gameNewsData" to gameNewsData)))
         }
         get("/game/{id}/new") {
             val id = call.parameters.getOrFail<String>("id")

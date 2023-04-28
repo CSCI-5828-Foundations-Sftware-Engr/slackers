@@ -24,8 +24,7 @@
                             <thead class="border-b font-medium dark:border-neutral-500">
                             <tr>
                                 <th scope="col" class="px-6 py-4">News</th>
-                                <th scope="col" class="px-6 py-4">Content</th>
-                                <th scope="col" class="px-6 py-4">Author</th>
+                                <th scope="col" class="px-6 py-4">Description</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,8 +33,7 @@
                                 <tr
                                         class="border-b transition duration-300 ease-in-out hover:bg-[#cdc9cb] dark:border-neutral-500 dark:hover:bg-neutral-600">
                                     <td class="whitespace-nowrap px-6 py-4 font-medium"><a href=${n.url} target="_blank" class="font-medium hover:underline">${n.title}</a></td>
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">${n.content}</td>
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">${n.author}</td>
+                                    <td class="whitespace-nowrap px-6 py-4 font-medium">${n.description}</td>
 
                                 </tr>
                             </#list>

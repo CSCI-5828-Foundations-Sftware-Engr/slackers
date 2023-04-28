@@ -3,8 +3,8 @@
 <@layout.header>
 
 <div class="grid grid-cols-2 gap-4 h-[100%]">
-    <#list games?reverse as game>
-    <div class="w-full flex items-center justify-center">
+    <#list games as game>
+    <div id="game" class="w-full flex items-center justify-center">
         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="/game/${game.id}">
         <div
           class="flex flex-col rounded-lg bg-[#cdc9cb] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] m-5 p-3 dark:bg-neutral-700 md:max-w-xl md:flex-row">
@@ -25,6 +25,7 @@
                   See details
                 </p>
               </div>
+            </div>
           </a>
         </div>
     </div>
