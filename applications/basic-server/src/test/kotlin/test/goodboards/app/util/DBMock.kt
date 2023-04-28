@@ -21,7 +21,7 @@ object DBMock {
     fun mockDBConnection(): Unit {
         mockkObject(SystemWrapper)
 //        every { SystemWrapper.getenv("JDBC_DATABASE_URL") } returns VALUE_DATABASE_URL
-        every { SystemWrapper.getenv("DATABASE_URL") } returns VALUE_DATABASE_URL
+        every { SystemWrapper.getenv("JDBC_DATABASE_URL") } returns VALUE_DATABASE_URL
         every { SystemWrapper.getenv("DATABASE_USERNAME") } returns VALUE_DATABASE_USERNAME
         every { SystemWrapper.getenv("DATABASE_PASSWORD") } returns VALUE_DATABASE_PASSWORD
         val mockedConnection: Connection = mockk(relaxed = true)
