@@ -4,7 +4,6 @@ import com.goodboards.app.database.DatabaseInit
 import com.goodboards.app.game.Game
 import com.goodboards.app.game.GamesHelper
 import com.goodboards.app.gameNews.GameNews
-import com.goodboards.app.kt.*
 import com.goodboards.app.news.NewsHelper
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.*
