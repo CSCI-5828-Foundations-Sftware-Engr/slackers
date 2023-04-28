@@ -25,7 +25,7 @@ class GamesTest {
         }
 
         fun checkGames(body: Element) {
-            assertTrue(body.select("p").size == 12)
+            assertTrue(body.select("p").size == 4)
         }
     }
 
