@@ -77,11 +77,20 @@ The available actions represent the majority of CRUD operations for database (mi
 // @return: DBInterface
 fun DBInterface() : Boolean
 ```
-Creating an interface.
+Creating an interface. Note that it is necessary to set the connection first.
 
 _Example_
 ```kotlin
-val dbInterface = DBInterface(DBConnection.getConnection())
+// Get database environment variables first
+val url = System.getenv("DATABASE_URL")
+val user = System.getenv("DATABASE_USERNAME")
+val pass = System.getenv("DATABASE_PASSWORD")
+
+// Set the connection
+DBConnection.setConnection(url, user, pass)
+
+// Now you can create the DBInterface
+val dbInterface = DBInterface(DBConnection)
 ```
 
 #### isConnected()
@@ -94,7 +103,7 @@ For checking whether the database connection is valid.
 
 _Example_
 ```kotlin
-val dbInterface = DBInterface(DBConnection.getConnection())
+val dbInterface = DBInterface(DBConnection)
 dbInterface.isConnected()
 ```
 
@@ -108,7 +117,7 @@ Selects all games from the `goodboards.games` table.
 
 _Example_
 ```kotlin
-val dbInterface = DBInterface(DBConnection.getConnection())
+val dbInterface = DBInterface(DBConnection)
 val games = dbInterface.getAllGames()
 ```
 
@@ -122,7 +131,7 @@ Return `Game` object with corresponding ID. Throws an error if the ID doesn't ex
 
 _Example_
 ```kotlin
-val dbInterface = DBInterface(DBConnection.getConnection())
+val dbInterface = DBInterface(DBConnection)
 val game = dbInterface.getGameById("46ab38e7-0d1e-4b25-86b9-9388726f8e82")
 ```
 
@@ -137,7 +146,7 @@ Adds a game with the provided data to the database.
 
 _Example_
 ```kotlin
-val dbInterface = DBInterface(DBConnection.getConnection())
+val dbInterface = DBInterface(DBConnection)
 dbInterface.addGame("Chess", "A Classic")
 ```
 
@@ -151,7 +160,7 @@ Return `Game` object with corresponding name. Throws an error if the name doesn'
 
 _Example_
 ```kotlin
-val dbInterface = DBInterface(DBConnection.getConnection())
+val dbInterface = DBInterface(DBConnection)
 val game = dbInterface.getGameByName("Chess")
 ```
 
@@ -165,7 +174,7 @@ Deletes game from database. Returns `true` if successful.
 
 _Example_
 ```kotlin
-val dbInterface = DBInterface(DBConnection.getConnection())
+val dbInterface = DBInterface(DBConnection)
 val status = dbInterface.deleteGameById("46ab38e7-0d1e-4b25-86b9-9388726f8e82")
 ```
 
