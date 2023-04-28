@@ -6,6 +6,4 @@ object HTMLUtil {
     fun extractGameElements(body: Element) : List<Element> {
         return body.select("tr[id=game]")
     }
-
-
 }

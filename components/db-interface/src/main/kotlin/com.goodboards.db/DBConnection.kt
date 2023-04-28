@@ -24,6 +24,6 @@ object DBConnection {
 
     fun setConnection(jdbcUrl: String, username: String, password: String) {
         connection = DriverManagerWrapper
-            .getConnection(jdbcUrl, username, password)
+            .getConnection("jdbc:$jdbcUrl", username, password)
     }
 }

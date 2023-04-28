@@ -18,6 +18,9 @@ object MockUtil {
         every { EnvHelper.getEnv(ENV_DATABASE_URL) }  returns DBMock.VALUE_DATABASE_URL
         every { EnvHelper.getEnv(ENV_DATABASE_USERNAME) }  returns DBMock.VALUE_DATABASE_USERNAME
         every { EnvHelper.getEnv(ENV_DATABASE_PASSWORD) }  returns DBMock.VALUE_DATABASE_PASSWORD
+//        every { EnvHelper.getEnv(ENV_DATABASE_URL) }  returns DatabaseInitTest.DATABASE_URL
+//        every { EnvHelper.getEnv(ENV_DATABASE_USERNAME) }  returns DatabaseInitTest.DATABASE_USERNAME
+//        every { EnvHelper.getEnv(ENV_DATABASE_PASSWORD) }  returns DatabaseInitTest.DATABASE_PASSWORD
     }
 
     fun mockDBConnection(): Connection {

@@ -8,9 +8,11 @@ import io.mockk.*
 import org.junit.Test
 import test.goodboards.app.util.DBMock
 import test.goodboards.app.util.MockUtil
+import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.Statement
 import java.util.*
+import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 
 
@@ -18,6 +20,22 @@ import kotlin.test.assertEquals
 class DatabaseInitTest {
 
     companion object {
+        private const val ENV_DATABASE_URL = "DATABASE_URL"
+        private const val ENV_DATABASE_USERNAME = "DATABASE_USERNAME"
+        private const val ENV_DATABASE_PASSWORD = "DATABASE_PASSWORD"
+
+        const val DATABASE_URL = "postgresql:localhost"
+
+        const val DATABASE_USERNAME = "username"
+        const val DATABASE_PASSWORD = "password"
+
+        fun mockEnvironmentCredentials() {
+            mockkObject(EnvHelper)
+            every { EnvHelper.getEnv(ENV_DATABASE_URL) }  returns DATABASE_URL
+            every { EnvHelper.getEnv(ENV_DATABASE_USERNAME) }  returns DATABASE_USERNAME
+            every { EnvHelper.getEnv(ENV_DATABASE_PASSWORD) }  returns DATABASE_PASSWORD
+        }
+
         fun mockUUID(){
             mockkObject(UUIDHelper)
             val uid = UUID.fromString("54228581-9c22-48ce-b775-41c06dd0f221")

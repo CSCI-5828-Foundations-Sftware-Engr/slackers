@@ -1,6 +1,7 @@
 package com.goodboards.app
 
 import com.goodboards.app.database.DatabaseInit
+import com.goodboards.app.game.Game
 import com.goodboards.app.game.GamesHelper
 import com.goodboards.app.gameNews.GameNews
 import com.goodboards.app.news.NewsHelper
@@ -22,6 +23,8 @@ import java.util.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
+import io.ktor.request.*
+
 
 private val logger = LoggerFactory.getLogger("App.kt")
 val client = HttpClient(CIO) {
@@ -50,7 +53,6 @@ fun Application.module() {
 
         get("/game/{id}") {
             val id = call.parameters.getOrFail<String>("id")
-            call.respond(FreeMarkerContent("game.ftl", mapOf("game" to GamesHelper.getAllGames().find { it.id == id })))
             val game = GamesHelper.getAllGames().find { it.id == id }
             val mockNewsData = game?.let { it1 -> NewsHelper.getNewsForGame(it1.name) }
             val gameNewsData = game?.let { it1 -> GameNews(id, game.name, it1.description, mockNewsData!!) }

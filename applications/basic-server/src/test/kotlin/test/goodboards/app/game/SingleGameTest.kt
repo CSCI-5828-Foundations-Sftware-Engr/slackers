@@ -1,4 +1,4 @@
-package test.goodboards.app
+package test.goodboards.app.game
 
 import com.goodboards.app.game.Game
 import io.ktor.http.*
@@ -6,6 +6,7 @@ import io.ktor.server.testing.*
 import org.jsoup.Jsoup
 import org.junit.Ignore
 import org.junit.Test
+import test.goodboards.app.BaseAppTest
 import test.goodboards.app.util.GamesMock
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
