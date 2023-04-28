@@ -8,7 +8,7 @@ object DBConnection {
     private var connection: Connection? = null
 
     fun getCredentials(): DBCredentials {
-        val jdbcUrl: String = SystemWrapper.getenv("DATABASE_URL")
+        val jdbcUrl: String = SystemWrapper.getenv("JDBC_DATABASE_URL")
         val username: String = SystemWrapper.getenv("DATABASE_USERNAME")
         val password: String = SystemWrapper.getenv("DATABASE_PASSWORD")
         return DBCredentials(jdbcUrl, username, password)
