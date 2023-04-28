@@ -1,7 +1,6 @@
 package com.goodboards.app
 
 import com.goodboards.app.database.DatabaseInit
-import com.goodboards.app.game.Game
 import com.goodboards.app.game.GamesHelper
 import com.goodboards.app.gameNews.GameNews
 import com.goodboards.app.news.NewsHelper
@@ -19,9 +18,6 @@ import io.ktor.server.netty.*
 import io.ktor.util.*
 import io.ktor.util.pipeline.*
 import org.slf4j.LoggerFactory
-import com.goodboards.app.game.GamesHelper
-import com.goodboards.app.game.Game
-import com.goodboards.app.game.GamesHelper
 import java.util.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
