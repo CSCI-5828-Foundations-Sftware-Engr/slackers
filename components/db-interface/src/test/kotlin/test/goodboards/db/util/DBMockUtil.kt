@@ -10,7 +10,7 @@ import java.sql.Connection
 object DBMockUtil {
     fun mockDBConnection(): Unit {
         mockkObject(SystemWrapper)
-        every { SystemWrapper.getenv("DATABASE_URL") } returns "fakeURL"
+        every { SystemWrapper.getenv("JDBC_DATABASE_URL") } returns "fakeURL"
         every { SystemWrapper.getenv("DATABASE_USERNAME") } returns "fakeUsername"
         every { SystemWrapper.getenv("DATABASE_PASSWORD") } returns "fakePassword"
         val mockedConnection: Connection = mockk(relaxed = true)

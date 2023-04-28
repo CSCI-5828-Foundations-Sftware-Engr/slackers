@@ -8,7 +8,7 @@ We have a staging deployment up and production can be up  on a button-click.
 ## Database
 
 - We deployed Postgres to staging and production to support data storage.
-- The environment variable are `DATABASE_URL`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD`, which are used to connect to Postgres on Heroku.
+- The environment variable are `JDBC_DATABASE_URL`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD`, which are used to connect to Postgres on Heroku.
 - The `goodboards.games` relation is used by `basic-server` to hold the game information.
 - Heroku Postgres connection document: [link](https://devcenter.heroku.com/articles/connecting-heroku-postgres)
 - Heroku Postgres add-on document: [link](https://devcenter.heroku.com/articles/heroku-postgresql#removing-the-add-on)

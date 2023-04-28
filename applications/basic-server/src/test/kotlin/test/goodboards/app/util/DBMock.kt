@@ -18,9 +18,9 @@ object DBMock {
 
     fun mockDBConnection(): Unit {
         mockkObject(SystemWrapper)
-        every { SystemWrapper.getenv("DATABASE_URL") } returns "fakeURL"
-        every { SystemWrapper.getenv("DATABASE_USERNAME") } returns "fakeUsername"
-        every { SystemWrapper.getenv("DATABASE_PASSWORD") } returns "fakePassword"
+        every { SystemWrapper.getenv("DATABASE_URL") } returns DATABASE_URL
+        every { SystemWrapper.getenv("DATABASE_USERNAME") } returns DATABASE_USERNAME
+        every { SystemWrapper.getenv("DATABASE_PASSWORD") } returns DATABASE_PASSWORD
         val mockedConnection: Connection = mockk(relaxed = true)
         mockkObject(DriverManagerWrapper)
         every {

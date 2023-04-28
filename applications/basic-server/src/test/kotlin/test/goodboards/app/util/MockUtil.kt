@@ -9,7 +9,7 @@ import test.goodboards.app.database.DatabaseInitTest
 import java.sql.Connection
 
 object MockUtil {
-    private const val ENV_DATABASE_URL = "DATABASE_URL"
+    private const val ENV_DATABASE_URL = "JDBC_DATABASE_URL"
     private const val ENV_DATABASE_USERNAME = "DATABASE_USERNAME"
     private const val ENV_DATABASE_PASSWORD = "DATABASE_PASSWORD"
 
