@@ -44,7 +44,7 @@ CREATE TABLE goodboards.news (
     timestamp TIMESTAMP NOT NULL,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(255)
-);us
+);
 
 ```
 
