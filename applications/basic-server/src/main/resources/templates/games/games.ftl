@@ -17,7 +17,7 @@
                     </thead>
                     <tbody>
                     <#list games as game>
-                        <tr id="table-news" class="border-b transition duration-300 ease-in-out hover:bg-[#cdc9cb] dark:border-neutral-500 dark:hover:bg-neutral-600">
+                        <tr id="game" class="border-b transition duration-300 ease-in-out hover:bg-[#cdc9cb] dark:border-neutral-500 dark:hover:bg-neutral-600">
                             <td class="whitespace-nowrap px-6 py-4 font-medium"><a href="/game/${game.id}" class="font-medium hover:underline">${game.name}</a></td>
                             <td class="whitespace-nowrap px-6 py-4 font-medium"><a href="/game/${game.id}" class="font-medium hover:underline">${game.description}</a></td>
                         </tr>
