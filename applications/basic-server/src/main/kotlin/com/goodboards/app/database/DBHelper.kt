@@ -4,6 +4,7 @@ import com.goodboards.db.DBConnection
 import com.goodboards.db.DBInterface
 import com.goodboards.db.SystemWrapper
 
+// TODO refactor DB Connection management
 object DBHelper {
 
         var dbInterface : DBInterface? = null
