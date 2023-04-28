@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="sessionData" -->
-<#import "_layout.ftl" as layout />
+<#import "../_layout.ftl" as layout />
 
 
 <@layout.header>

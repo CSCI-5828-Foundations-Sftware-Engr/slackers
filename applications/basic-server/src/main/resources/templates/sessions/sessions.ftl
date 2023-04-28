@@ -1,10 +1,8 @@
 <#-- @ftlvariable name="sessions" -->
-<#import "_layout.ftl" as layout />
+<#import "../_layout.ftl" as layout />
 <@layout.header>
     <div>
-        <h3 class="text-center text-[#cdc9cb] font-bold text-2xl p-4">
-            SESSIONS
-        </h3>
+        <h3 class="text-3xl p-4 text-center leading-none tracking-tight md:text-5xl lg:text-3xl text-[#a58c4a]" style="font-family: 'Ultra', serif;">SESSIONS</h3>
         <hr />
         <div class="flex items-center justify-center">
 

@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="playerGameOptions" -->
-<#import "_layout.ftl" as layout />
+<#import "../_layout.ftl" as layout />
 <@layout.header>
     <div>
         <h3 class="text-center text-[#cdc9cb] font-bold text-2xl p-4">

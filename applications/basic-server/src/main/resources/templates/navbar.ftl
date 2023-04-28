@@ -4,7 +4,7 @@
     <div class="max-w-screen-xl flex flex-wrap flex-col items-center justify-center mx-auto p-6">
       <a href="/" class="flex flex-col items-center">
         <img src="https://www.pngitem.com/pimgs/m/152-1529569_board-games-clipart-png-transparent-background-board-game.png" class="h-24 mr-3 rounded-full" alt="Team Slackers" />
-        <span class="self-center text-2xl font-semibold text-[#ce5936] underline decoration-sky-500/[.33] whitespace-nowrap">TEAM SLACKERS</span>
+        <span class="self-center text-2xl font-semibold text-[#ce5936] underline decoration-sky-500/[.33] whitespace-nowrap">GOODBOARDS</span>
       </a>
       <div class="hidden w-full m-4 md:block md:w-auto" id="navbar-default">
         <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 text-[#cdc9cb]">
