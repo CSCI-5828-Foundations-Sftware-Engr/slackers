@@ -12,15 +12,15 @@ import java.sql.Connection
 
 object DBMock {
 
-    val DATABASE_URL = "fakeURL"
-    val DATABASE_USERNAME = "fakeUsername"
-    val DATABASE_PASSWORD = "fakePassword"
+    val VALUE_DATABASE_URL = "fakeURL"
+    val VALUE_DATABASE_USERNAME = "fakeUsername"
+    val VALUE_DATABASE_PASSWORD = "fakePassword"
 
     fun mockDBConnection(): Unit {
         mockkObject(SystemWrapper)
-        every { SystemWrapper.getenv("DATABASE_URL") } returns DATABASE_URL
-        every { SystemWrapper.getenv("DATABASE_USERNAME") } returns DATABASE_USERNAME
-        every { SystemWrapper.getenv("DATABASE_PASSWORD") } returns DATABASE_PASSWORD
+        every { SystemWrapper.getenv("JDBC_DATABASE_URL") } returns VALUE_DATABASE_URL
+        every { SystemWrapper.getenv("DATABASE_USERNAME") } returns VALUE_DATABASE_USERNAME
+        every { SystemWrapper.getenv("DATABASE_PASSWORD") } returns VALUE_DATABASE_PASSWORD
         val mockedConnection: Connection = mockk(relaxed = true)
         mockkObject(DriverManagerWrapper)
         every {

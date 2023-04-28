@@ -1,6 +1,5 @@
 package test.goodboards.app.database
 
-import com.goodboards.app.database.ConnectionHelper
 import com.goodboards.app.database.DBHelper
 import com.goodboards.app.database.DatabaseInit
 import com.goodboards.app.database.UUIDHelper
@@ -8,7 +7,6 @@ import io.mockk.*
 import org.junit.Test
 import test.goodboards.app.util.DBMock
 import test.goodboards.app.util.MockUtil
-import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.Statement
 import java.util.*
@@ -46,9 +44,9 @@ class DatabaseInitTest {
     fun testGetsCredential() {
         DBMock.mockDBConnection()
         val actualCredential = DBHelper.getDatabaseCredentials()
-        assertEquals(DBMock.DATABASE_URL, actualCredential.url)
-        assertEquals(DBMock.DATABASE_USERNAME, actualCredential.username)
-        assertEquals(DBMock.DATABASE_PASSWORD, actualCredential.password)
+        assertEquals(DBMock.VALUE_DATABASE_URL, actualCredential.url)
+        assertEquals(DBMock.VALUE_DATABASE_USERNAME, actualCredential.username)
+        assertEquals(DBMock.VALUE_DATABASE_PASSWORD, actualCredential.password)
     }
 
     @Test

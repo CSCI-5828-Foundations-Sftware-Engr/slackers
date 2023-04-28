@@ -17,7 +17,7 @@ object DBMockUtil {
         mockkObject(DriverManagerWrapper)
         every {
             DriverManagerWrapper.getConnection(
-                "jdbc:fakeURL",
+                "fakeURL",
                 "fakeUsername",
                 "fakePassword"
             )

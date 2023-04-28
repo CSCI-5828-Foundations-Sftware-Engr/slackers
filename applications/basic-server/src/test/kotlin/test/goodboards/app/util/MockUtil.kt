@@ -5,7 +5,6 @@ import com.goodboards.app.util.EnvHelper
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
-import test.goodboards.app.database.DatabaseInitTest
 import java.sql.Connection
 
 object MockUtil {
@@ -16,9 +15,9 @@ object MockUtil {
 
     fun mockEnvironmentCredentials() {
         mockkObject(EnvHelper)
-        every { EnvHelper.getEnv(ENV_DATABASE_URL) }  returns DBMock.DATABASE_URL
-        every { EnvHelper.getEnv(ENV_DATABASE_USERNAME) }  returns DBMock.DATABASE_USERNAME
-        every { EnvHelper.getEnv(ENV_DATABASE_PASSWORD) }  returns DBMock.DATABASE_PASSWORD
+        every { EnvHelper.getEnv(ENV_DATABASE_URL) }  returns DBMock.VALUE_DATABASE_URL
+        every { EnvHelper.getEnv(ENV_DATABASE_USERNAME) }  returns DBMock.VALUE_DATABASE_USERNAME
+        every { EnvHelper.getEnv(ENV_DATABASE_PASSWORD) }  returns DBMock.VALUE_DATABASE_PASSWORD
     }
 
     fun mockDBConnection(): Connection {
