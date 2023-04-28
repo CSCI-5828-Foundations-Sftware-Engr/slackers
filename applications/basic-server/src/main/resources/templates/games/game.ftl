@@ -2,7 +2,7 @@
 <#import "../_layout.ftl" as layout />
 <@layout.header>
     <div>
-        <h1 class="my-4 text-5xl m-5 text-center leading-none tracking-tight md:text-5xl lg:text-6xl text-[#a58c4a]" style="font-family: 'Ultra', serif;">${gameNewsData.name}</h1>
+        <h1 class="my-4 text-5xl m-5 text-center leading-none tracking-tight md:text-5xl lg:text-6xl text-[#a58c4a] game-name" style="font-family: 'Ultra', serif;">${gameNewsData.name}</h1>
         <hr>
         <div class="game-description mb-4 text-[#cdc9cb] px-4 py-5">
             <p>

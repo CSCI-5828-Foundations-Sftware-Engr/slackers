@@ -3,8 +3,10 @@ package test.goodboards.app.news
 
 import com.goodboards.app.news.NewsHelper
 import com.goodboards.app.news.News
+import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.verify
+import org.junit.After
 import org.junit.Test
 import test.goodboards.app.util.DBMock
 import kotlin.test.assertEquals
@@ -21,5 +23,10 @@ class NewsHelperTest {
         val news: List<News> = NewsHelper.getNewsForGame("test");
         verify (exactly = 1) { dbInterface.getNewsForGame("test") }
         assertTrue { dbNews.size == news.size }
+    }
+
+    @After
+    fun clearSetup() {
+        clearAllMocks()
     }
 }
