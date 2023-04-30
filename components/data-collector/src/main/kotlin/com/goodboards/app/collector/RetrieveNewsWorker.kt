@@ -2,6 +2,7 @@ package com.goodboards.app.collector
 
 import com.goodboards.workflow.Worker
 import com.goodboards.db.*
+import com.goodboards.redis.*
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory
 class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<RetrieveNewsTask> {
     private val NEWS_API_KEY = System.getenv("NEWS_API_KEY")
     private val logger = LoggerFactory.getLogger(this.javaClass)
+    private val redisInterface = RedisInterface()
     private val client = HttpClient(CIO) {
         install(Logging) {
             logger = Logger.DEFAULT
@@ -54,7 +56,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
             )
 
             // Query news for all games in the database
-            val newsUnits = mutableListOf<NewsUnit>()
+            val newsUnits = mutableListOf<String>()
             for(game in games) {
 
                 // Format game name for API call
@@ -69,12 +71,14 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
                     if(article.title.isEmpty() || article.description.isEmpty() || article.url.isEmpty()) {
                         continue
                     }
-                    newsUnits.add(NewsUnit(game.uuid, article.title, article.description, article.url))
+                    val unit = NewsUnit(game.uuid, article.title, article.description, article.url)
+                    newsUnits.add(format.encodeToString(unit))
                 }
             }
-            println(newsUnits)
 
             // Put news in Redis
+            val arrNewsUnits = newsUnits.toTypedArray()
+            redisInterface.pushToList(key = "news:collect-analyze", *arrNewsUnits)
 
             logger.info("completed data collection.")
         }

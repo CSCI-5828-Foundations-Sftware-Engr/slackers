@@ -5,8 +5,8 @@ import io.lettuce.core.api.StatefulRedisConnection
 import io.lettuce.core.api.sync.RedisCommands
 
 class RedisInterface {
-    private val REDIS_TLS_URI = SystemWrapper.getenv("REDIS_TLS_URI")
-    private val redisClient: RedisClient = RedisClient.create(REDIS_TLS_URI)
+    private val redisHost = SystemWrapper.getenv("REDIS_TLS_URL")
+    private val redisClient: RedisClient = RedisClient.create(redisHost)
     private val connection: StatefulRedisConnection<String, String> = redisClient.connect()
     private val redisCommands: RedisCommands<String, String> = connection.sync()
 

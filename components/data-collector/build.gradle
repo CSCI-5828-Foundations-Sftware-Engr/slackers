@@ -7,6 +7,8 @@ dependencies {
     implementation "io.ktor:ktor-client-cio:$ktor_version"
     implementation "io.ktor:ktor-client-logging:$ktor_version"
     implementation "io.ktor:ktor-client-serialization:$ktor_version"
+    implementation 'io.lettuce:lettuce-core:6.2.4.RELEASE'
     implementation project(":components:workflow-support")
     implementation project(":components:db-interface")
+    implementation project(":components:redis-interface")
 }
