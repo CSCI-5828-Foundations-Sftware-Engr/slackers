@@ -10,7 +10,6 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import io.ktor.features.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
@@ -70,7 +69,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
 
             // Put news in Redis
             val arrNewsUnits = newsUnits.toTypedArray()
-            redisInterface.pushToList(key = "news:collect-analyze", *arrNewsUnits)
+            redisInterface.pushToList(name = "news:collect-analyze", *arrNewsUnits)
 
             logger.info("completed data collection.")
         }

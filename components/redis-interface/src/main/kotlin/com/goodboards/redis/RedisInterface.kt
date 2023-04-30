@@ -10,12 +10,12 @@ class RedisInterface {
     private val connection: StatefulRedisConnection<String, String> = redisClient.connect()
     private val redisCommands: RedisCommands<String, String> = connection.sync()
 
-    fun pushToList(key: String, vararg values: String) {
-        redisCommands.lpush(key, *values)
+    fun pushToList(name: String, vararg values: String) {
+        redisCommands.lpush(name, *values)
     }
 
-    fun getFromList(key: String, count: Long = 1): List<String> {
-        return redisCommands.rpop(key, count)
+    fun getFromList(name: String, count: Long = 1): List<String> {
+        return redisCommands.rpop(name, count)
     }
 
     // TODO interface as Object or Class
