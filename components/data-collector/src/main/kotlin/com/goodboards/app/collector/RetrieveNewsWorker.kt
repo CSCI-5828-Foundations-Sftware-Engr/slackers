@@ -18,24 +18,10 @@ import org.slf4j.LoggerFactory
 class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<RetrieveNewsTask> {
 
     private val logger = LoggerFactory.getLogger(this.javaClass)
-    private val redisInterface = RedisInterface()
-
-    // Connect to database
-    val dbCreds = DBConnection.getCredentials()
-    val status = DBConnection.setConnection(dbCreds.url, dbCreds.username, dbCreds.password)
-    private val dbInterface = DBInterface(DBConnection)
-
-    // Connect to News API via HTTP
-    private val NEWS_API_KEY = System.getenv("NEWS_API_KEY")
-    private val client = HttpClient(CIO) {
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.HEADERS
-        }
-        install(JsonFeature) {
-            serializer = KotlinxSerializer()
-        }
-    }
+    private val redisInterface = Wrappers.getRedisInterface()
+    private val dbInterface = Wrappers.getDBInterface()
+    private val apiKey = Wrappers.getenv("NEWS_API_KEY")
+    private val client = Wrappers.getHttpClient()
     private val format = Json {
         prettyPrint = true
         coerceInputValues = true
@@ -54,7 +40,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
                 val name = game.name.replace(" ", "_").lowercase()
 
                 // Get data and deserialize
-                val newsRaw: HttpResponse = client.get("https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$NEWS_API_KEY")
+                val newsRaw: HttpResponse = client.get("https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$apiKey")
                 val newsResponse = format.decodeFromString<NewsResponse>(newsRaw.readText())
 
                 // Package response into units of work for redis
@@ -69,6 +55,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
 
             // Put news in Redis
             val arrNewsUnits = newsUnits.toTypedArray()
+            println(newsUnits)
             redisInterface.pushToList(name = "news:collect-analyze", *arrNewsUnits)
 
             logger.info("completed data collection.")

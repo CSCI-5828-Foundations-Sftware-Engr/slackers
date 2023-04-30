@@ -12,6 +12,8 @@ dependencies {
     implementation project(":components:workflow-support")
     implementation project(":components:db-interface")
     implementation project(":components:redis-interface")
+
+    testImplementation("io.ktor:ktor-client-mock:$ktor_version")
 }
 
 tasks.withType(Copy).all {
