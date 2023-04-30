@@ -17,9 +17,17 @@ import kotlinx.serialization.json.Json
 import org.slf4j.LoggerFactory
 
 class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<RetrieveNewsTask> {
-    private val NEWS_API_KEY = System.getenv("NEWS_API_KEY")
+
     private val logger = LoggerFactory.getLogger(this.javaClass)
     private val redisInterface = RedisInterface()
+
+    // Connect to database
+    val dbCreds = DBConnection.getCredentials()
+    val status = DBConnection.setConnection(dbCreds.url, dbCreds.username, dbCreds.password)
+    private val dbInterface = DBInterface(DBConnection)
+
+    // Connect to News API via HTTP
+    private val NEWS_API_KEY = System.getenv("NEWS_API_KEY")
     private val client = HttpClient(CIO) {
         install(Logging) {
             logger = Logger.DEFAULT
@@ -38,24 +46,8 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
         runBlocking {
             logger.info("starting data collection.")
 
-            // todo - data collection happens here
-
-            // Get all games in the database
-//            val url = System.getenv("DATABASE_URL")
-//            val user = System.getenv("DATABASE_USERNAME")
-//            val pass = System.getenv("DATABASE_PASSWORD")
-//            DBConnection.setConnection(url, user, pass)
-//            val dbInterface = DBInterface(DBConnection)
-//            val games = dbInterface.getAllGames()
-
-            // TODO: when local db is working again, scrap this code and use above
-            val games = listOf(
-                Game("1", "Uno", "Terrifying"),
-                Game("2", "Chess", "Classic"),
-                Game("3", "Poker", "Slippery slope")
-            )
-
             // Query news for all games in the database
+            val games = dbInterface.getAllGames()
             val newsUnits = mutableListOf<String>()
             for(game in games) {
 
@@ -63,7 +55,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
                 val name = game.name.replace(" ", "_").lowercase()
 
                 // Get data and deserialize
-                val newsRaw: HttpResponse = client.get("https://newsapi.org/v2/everything?q=$name&pageSize=10&apiKey=$NEWS_API_KEY")
+                val newsRaw: HttpResponse = client.get("https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$NEWS_API_KEY")
                 val newsResponse = format.decodeFromString<NewsResponse>(newsRaw.readText())
 
                 // Package response into units of work for redis

@@ -22,8 +22,9 @@ object DBConnection {
         return connection!!
     }
 
-    fun setConnection(jdbcUrl: String, username: String, password: String) {
+    fun setConnection(jdbcUrl: String, username: String, password: String) : Boolean {
         connection = DriverManagerWrapper
             .getConnection(jdbcUrl, username, password)
+        return true
     }
 }
