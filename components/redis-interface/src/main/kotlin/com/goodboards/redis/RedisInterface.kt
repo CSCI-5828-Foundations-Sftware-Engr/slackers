@@ -18,8 +18,6 @@ class RedisInterface {
         return redisCommands.rpop(name, count)
     }
 
-    // TODO interface as Object or Class
-
     fun close() {
         connection.close()
         redisClient.shutdown()
