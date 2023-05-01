@@ -78,4 +78,49 @@ class RetrieveNewsWorkerTest {
         // : No exceptions thrown
     }
 
+    @Test
+    fun testExecuteNoArticles() = runTest {
+
+        // ----- Setup -----
+        // Mock Wrapper
+        val mockedWrappers: Wrappers = mockk(relaxed = true)
+        val mockedNewsApiKey = "mockNewsApiKey"
+        val mockedDBInterface: DBInterface = mockk(relaxed = true)
+        val mockedRedisInterface: RedisInterface = mockk(relaxed = true)
+        val mockedHttpClient: HttpClientWrapper = mockk(relaxed = true)
+        every { mockedWrappers.getEnv("NEWS_API_KEY") } returns mockedNewsApiKey
+        every { mockedWrappers.getDBInterface() } returns mockedDBInterface
+        every { mockedWrappers.getRedisInterface() } returns mockedRedisInterface
+        every { mockedWrappers.getHttpClient() } returns mockedHttpClient
+
+        // Mock DB calls
+        val games = mutableListOf(
+            Game("1", "Multi Word Name", "Classic Chess"),
+            Game("2", "Uno", "Classic Uno")
+        )
+        every { mockedDBInterface.getAllGames() } returns games
+
+        // Mock HttpClient calls
+        val formattedGameNames = listOf("multi_word_name", "uno")
+        val mockedHttpResponse: HttpResponse = mockk(relaxed = true)
+        for(name in formattedGameNames) {
+            val url = "https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$mockedNewsApiKey"
+            coEvery { mockedHttpClient.get(url) } returns mockedHttpResponse
+        }
+        val rawArticle = """{"status":"ok","totalResults":0,"articles":[]}"""
+        coEvery { mockedHttpResponse.readText() } returns rawArticle
+
+        // Mock Redis Calls
+        val newsUnits = arrayOf<String>()
+        every { mockedRedisInterface.pushToList("news:collect-analyze", *newsUnits) } throws Exception("ERROR: no articles to add")
+
+        // ----- Test -----
+        val task = RetrieveNewsTask("No Articles Found Test")
+        val worker = RetrieveNewsWorker()
+        worker.execute(task)
+
+        // ----- Expect -----
+        // : No exceptions thrown
+    }
+
 }
