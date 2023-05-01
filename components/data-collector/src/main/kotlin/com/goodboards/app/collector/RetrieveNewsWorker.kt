@@ -1,14 +1,6 @@
 package com.goodboards.app.collector
 
 import com.goodboards.workflow.Worker
-import com.goodboards.db.*
-import com.goodboards.redis.*
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.*
@@ -20,7 +12,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
     private val logger = LoggerFactory.getLogger(this.javaClass)
     private val redisInterface = Wrappers.getRedisInterface()
     private val dbInterface = Wrappers.getDBInterface()
-    private val apiKey = Wrappers.getenv("NEWS_API_KEY")
+    private val apiKey = Wrappers.getEnv("NEWS_API_KEY")
     private val client = Wrappers.getHttpClient()
     private val format = Json {
         prettyPrint = true

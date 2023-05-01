@@ -12,7 +12,7 @@ import io.ktor.client.features.logging.*
 object Wrappers {
 
     // System.getenv()
-    fun getenv(key: String): String = System.getenv(key)!!
+    fun getEnv(key: String): String = System.getenv(key)!!
 
     // Redis connection
     fun getRedisInterface(): RedisInterface = RedisInterface()

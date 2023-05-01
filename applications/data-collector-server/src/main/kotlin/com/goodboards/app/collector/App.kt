@@ -18,7 +18,8 @@ fun Application.module() {
             call.respondText("hi!", ContentType.Text.Html)
         }
     }
-    val scheduler = WorkScheduler<RetrieveNewsTask>(RetrieveNewsWorkFinder(), mutableListOf(RetrieveNewsWorker()), 30)
+    // Delay for 30 min intervals
+    val scheduler = WorkScheduler<RetrieveNewsTask>(RetrieveNewsWorkFinder(), mutableListOf(RetrieveNewsWorker()), 30*60)
     scheduler.start()
 }
 
