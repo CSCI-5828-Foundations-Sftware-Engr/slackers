@@ -25,15 +25,7 @@ object Wrappers {
     }
 
     // HttpClient
-    fun getHttpClient(): HttpClient {
-        return HttpClient(CIO) {
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.HEADERS
-            }
-            install(JsonFeature) {
-                serializer = KotlinxSerializer()
-            }
-        }
+    fun getHttpClient(): HttpClientWrapper {
+        return HttpClientWrapper()
     }
 }

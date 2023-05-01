@@ -3,19 +3,33 @@ package test.goodboards.app.collector
 import com.goodboards.app.collector.RetrieveNewsTask
 import com.goodboards.app.collector.RetrieveNewsWorker
 import com.goodboards.app.collector.Wrappers
+import com.goodboards.app.collector.HttpClientWrapper
+import com.goodboards.app.collector.NewsUnit
 import com.goodboards.db.DBInterface
 import com.goodboards.db.Game
 import com.goodboards.redis.RedisInterface
 import io.ktor.client.*
 import io.ktor.client.statement.*
 import org.junit.Test
+import org.junit.Before
 import io.mockk.*
+import kotlinx.coroutines.test.*
+import kotlinx.serialization.json.Json
 
 class RetrieveNewsWorkerTest {
 
-    // Test if entire path went well
+//    private val format = Json {
+//        prettyPrint = true
+//        coerceInputValues = true
+//    }
+
+    @Before
+    fun setup() {
+        mockkStatic(HttpResponse::readText)
+    }
+
     @Test
-    fun testExecuteHappyPath() {
+    fun testExecuteHappyPath() = runTest {
 
         // ----- Setup -----
         // Mock Wrapper
@@ -23,7 +37,7 @@ class RetrieveNewsWorkerTest {
         val mockedNewsApiKey = "mockNewsApiKey"
         val mockedDBInterface: DBInterface = mockk(relaxed = true)
         val mockedRedisInterface: RedisInterface = mockk(relaxed = true)
-        val mockedHttpClient: HttpClient = mockk(relaxed = true)
+        val mockedHttpClient: HttpClientWrapper = mockk(relaxed = true)
         every { mockedWrappers.getenv("NEWS_API_KEY") } returns mockedNewsApiKey
         every { mockedWrappers.getDBInterface() } returns mockedDBInterface
         every { mockedWrappers.getRedisInterface() } returns mockedRedisInterface
@@ -41,12 +55,10 @@ class RetrieveNewsWorkerTest {
         val mockedHttpResponse: HttpResponse = mockk(relaxed = true)
         for(name in formattedGameNames) {
             val url = "https://newsapi.org/v2/everything?q=$name&pageSize=10&apiKey=$mockedNewsApiKey"
-            //every { mockedHttpClient.get(url) } returns mockedHttpResponse
+            coEvery { mockedHttpClient.get(url) } returns mockedHttpResponse
         }
-        val rawArticle = """
-            {"status":"ok","totalResults":1,"articles":[{"source":{"id":"fake-news","name":"Fake News"},"author":"Fake Author","title":"Fake Title","description":"Fake Description","url":"Fake URL","urlToImage":"Fake Image URL","publishedAt":"Fake Timestamp","content":"Fake Content"}]}
-        """.trimIndent()
-        //every { mockedHttpResponse.readText() } returns rawArticle
+        val rawArticle = """{"status":"ok","totalResults":1,"articles":[{"source":{"id":"fake-news","name":"Fake News"},"author":"Fake Author","title":"Fake Title","description":"Fake Description","url":"Fake URL","urlToImage":"Fake Image URL","publishedAt":"Fake Timestamp","content":"Fake Content"}]}"""
+        coEvery { mockedHttpResponse.readText() } returns rawArticle
 
         // Mock Redis Calls
         val newsUnits = arrayOf(
@@ -55,14 +67,20 @@ class RetrieveNewsWorkerTest {
                 "title": "Fake Title",
                 "description": "Fake Description", 
                 "url": "Fake URL"
-            }""",
+            }""".trimIndent(),
             """{
                 "gameID": "2",
                 "title": "Fake Title",
                 "description": "Fake Description", 
                 "url": "Fake URL"
-            }"""
+            }""".trimIndent()
         )
+//        val unitOne = NewsUnit("1", "Fake Title", "Fake Description", "Fake Title")
+//        val unitTwo = NewsUnit("2", "Fake Title", "Fake Description", "Fake Title")
+//        val units = arrayOf(
+//            format.encodeToString(unitOne),
+//            format.encodeToString(unitTwo)
+//        )
         every { mockedRedisInterface.pushToList("news:collect-analyze", *newsUnits) } returns Unit
 
         // ----- Test -----
@@ -71,8 +89,7 @@ class RetrieveNewsWorkerTest {
         worker.execute(task)
 
         // ----- Expect -----
-        // : articles to be added to redis queue
-
+        // : No exceptions thrown
     }
 
 }

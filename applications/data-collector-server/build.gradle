@@ -12,8 +12,7 @@ dependencies {
     implementation project(":components:workflow-support")
     implementation project(":components:db-interface")
     implementation project(":components:redis-interface")
-
-    testImplementation("io.ktor:ktor-client-mock:$ktor_version")
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
 }
 
 tasks.withType(Copy).all {

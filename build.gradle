@@ -53,12 +53,12 @@ subprojects {
 
         testImplementation "io.ktor:ktor-client-core:$ktor_version"
         testImplementation "io.ktor:ktor-client-cio:$ktor_version"
-        testImplementation("io.ktor:ktor-client-mock:$ktor_version")
         testImplementation "io.ktor:ktor-server-test-host:$ktor_version"
         testImplementation group: 'junit', name: 'junit', version: "junit_version"
         testImplementation "io.mockk:mockk:$mockk_version"
         testImplementation "org.awaitility:awaitility:4.0.3"
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+        testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
     }
 
     sourceSets {

@@ -55,7 +55,6 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
 
             // Put news in Redis
             val arrNewsUnits = newsUnits.toTypedArray()
-            println(newsUnits)
             redisInterface.pushToList(name = "news:collect-analyze", *arrNewsUnits)
 
             logger.info("completed data collection.")
