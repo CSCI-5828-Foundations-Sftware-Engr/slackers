@@ -1,5 +1,6 @@
 package com.goodboards.app.collector
 
+import com.goodboards.app.collector.tasks.RetrieveNewsTaskHelper
 import com.goodboards.workflow.WorkScheduler
 import io.ktor.application.*
 import io.ktor.features.*
@@ -18,9 +19,7 @@ fun Application.module() {
             call.respondText("hi!", ContentType.Text.Html)
         }
     }
-    // Delay for 30 min intervals
-    val scheduler = WorkScheduler<RetrieveNewsTask>(RetrieveNewsWorkFinder(), mutableListOf(RetrieveNewsWorker()), 30*60)
-    scheduler.start()
+    RetrieveNewsTaskHelper.scheduleRetrieveNewsTask()
 }
 
 fun main() {

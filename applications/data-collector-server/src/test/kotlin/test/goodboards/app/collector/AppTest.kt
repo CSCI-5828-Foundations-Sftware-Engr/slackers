@@ -1,8 +1,10 @@
 package test.goodboards.app.collector
 
 import com.goodboards.app.collector.module
+import com.goodboards.app.collector.tasks.RetrieveNewsTaskHelper
 import io.ktor.http.*
 import io.ktor.server.testing.*
+import io.mockk.*
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -19,6 +21,10 @@ class AppTest {
     }
 
     private fun testApp(callback: TestApplicationEngine.() -> Unit) {
-        withTestApplication({ module() }) { callback() }
+        withTestApplication({
+            mockkObject(RetrieveNewsTaskHelper)
+            every { RetrieveNewsTaskHelper.scheduleRetrieveNewsTask() } returns Unit
+            module()
+        }) { callback() }
     }
 }

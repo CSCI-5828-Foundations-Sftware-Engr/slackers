@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory
 class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<RetrieveNewsTask> {
 
     private val logger = LoggerFactory.getLogger(this.javaClass)
-    private val redisInterface = Wrappers.getRedisInterface()
-    private val dbInterface = Wrappers.getDBInterface()
-    private val apiKey = Wrappers.getEnv("NEWS_API_KEY")
-    private val client = Wrappers.getHttpClient()
+    private val redisInterface = Wrapper.getRedisInterface()
+    private val dbInterface = Wrapper.getDBInterface()
+    private val apiKey = Wrapper.getEnv("NEWS_API_KEY")
+    private val client = Wrapper.getHttpClient()
     private val format = Json {
         prettyPrint = true
         coerceInputValues = true
@@ -46,7 +46,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
             }
 
             // Put news in Redis if there is any
-            if(newsUnits.size != 0)
+            if(newsUnits.isNotEmpty())
             {
                 redisInterface.pushToList(name = "news:collect-analyze", newsUnits)
             }

@@ -2,9 +2,8 @@ package test.goodboards.app.collector
 
 import com.goodboards.app.collector.RetrieveNewsTask
 import com.goodboards.app.collector.RetrieveNewsWorker
-import com.goodboards.app.collector.Wrappers
+import com.goodboards.app.collector.Wrapper
 import com.goodboards.app.collector.HttpClientWrapper
-import com.goodboards.db.DBInterface
 import com.goodboards.db.Game
 import com.goodboards.redis.RedisInterface
 import io.ktor.client.statement.*
@@ -24,16 +23,18 @@ class RetrieveNewsWorkerTest {
     fun testExecuteHappyPath() = runTest {
 
         // ----- Setup -----
+        // Mock Database
+        val mockedNewsApiKey = "mockedNewsAPIKey"
+        val mockedDBInterface = DBMock.mockDBInterface()
+        val mockedRedisInterface = mockk<RedisInterface>()
+        val mockedHttpClientWrapper: HttpClientWrapper = mockk(relaxed = true)
+
         // Mock Wrapper
-        val mockedWrappers: Wrappers = mockk(relaxed = true)
-        val mockedNewsApiKey = "mockNewsApiKey"
-        val mockedDBInterface: DBInterface = mockk(relaxed = true)
-        val mockedRedisInterface: RedisInterface = mockk(relaxed = true)
-        val mockedHttpClient: HttpClientWrapper = mockk(relaxed = true)
-        every { mockedWrappers.getEnv("NEWS_API_KEY") } returns mockedNewsApiKey
-        every { mockedWrappers.getDBInterface() } returns mockedDBInterface
-        every { mockedWrappers.getRedisInterface() } returns mockedRedisInterface
-        every { mockedWrappers.getHttpClient() } returns mockedHttpClient
+        mockkObject(Wrapper)
+        every { Wrapper.getEnv("NEWS_API_KEY") } returns mockedNewsApiKey
+        every { Wrapper.getDBInterface() } returns mockedDBInterface
+        every { Wrapper.getRedisInterface() } returns mockedRedisInterface
+        every { Wrapper.getHttpClient() } returns mockedHttpClientWrapper
 
         // Mock DB calls
         val games = mutableListOf(
@@ -47,7 +48,7 @@ class RetrieveNewsWorkerTest {
         val mockedHttpResponse: HttpResponse = mockk(relaxed = true)
         for(name in formattedGameNames) {
             val url = "https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$mockedNewsApiKey"
-            coEvery { mockedHttpClient.get(url) } returns mockedHttpResponse
+            coEvery { mockedHttpClientWrapper.get(url) } returns mockedHttpResponse
         }
         val rawArticle = """{"status":"ok","totalResults":1,"articles":[{"source":{"id":"fake-news","name":"Fake News"},"author":"Fake Author","title":"Fake Title","description":"Fake Description","url":"Fake URL","urlToImage":"Fake Image URL","publishedAt":"Fake Timestamp","content":"Fake Content"}]}"""
         coEvery { mockedHttpResponse.readText() } returns rawArticle
@@ -83,15 +84,15 @@ class RetrieveNewsWorkerTest {
 
         // ----- Setup -----
         // Mock Wrapper
-        val mockedWrappers: Wrappers = mockk(relaxed = true)
-        val mockedNewsApiKey = "mockNewsApiKey"
-        val mockedDBInterface: DBInterface = mockk(relaxed = true)
-        val mockedRedisInterface: RedisInterface = mockk(relaxed = true)
-        val mockedHttpClient: HttpClientWrapper = mockk(relaxed = true)
-        every { mockedWrappers.getEnv("NEWS_API_KEY") } returns mockedNewsApiKey
-        every { mockedWrappers.getDBInterface() } returns mockedDBInterface
-        every { mockedWrappers.getRedisInterface() } returns mockedRedisInterface
-        every { mockedWrappers.getHttpClient() } returns mockedHttpClient
+        val mockedNewsApiKey = "mockedNewsAPIKey"
+        val mockedDBInterface = DBMock.mockDBInterface()
+        val mockedRedisInterface = mockk<RedisInterface>()
+        val mockedHttpClientWrapper: HttpClientWrapper = mockk(relaxed = true)
+        mockkObject(Wrapper)
+        every { Wrapper.getEnv("NEWS_API_KEY") } returns mockedNewsApiKey
+        every { Wrapper.getDBInterface() } returns mockedDBInterface
+        every { Wrapper.getRedisInterface() } returns mockedRedisInterface
+        every { Wrapper.getHttpClient() } returns mockedHttpClientWrapper
 
         // Mock DB calls
         val games = mutableListOf(
@@ -105,7 +106,7 @@ class RetrieveNewsWorkerTest {
         val mockedHttpResponse: HttpResponse = mockk(relaxed = true)
         for(name in formattedGameNames) {
             val url = "https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$mockedNewsApiKey"
-            coEvery { mockedHttpClient.get(url) } returns mockedHttpResponse
+            coEvery { mockedHttpClientWrapper.get(url) } returns mockedHttpResponse
         }
         val rawArticle = """{"status":"ok","totalResults":0,"articles":[]}"""
         coEvery { mockedHttpResponse.readText() } returns rawArticle
