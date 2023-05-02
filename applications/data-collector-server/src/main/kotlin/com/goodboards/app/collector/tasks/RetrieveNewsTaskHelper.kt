@@ -5,11 +5,14 @@ import com.goodboards.workflow.WorkScheduler
 
 object RetrieveNewsTaskHelper {
 
-    // Delay for 1 hr intervals
+    // Interval between each api query in seconds.
+    // Current interval: 1 hr
+    private const val INTERVAL: Long = 3600
+
     fun scheduleRetrieveNewsTask() {
         val finder = Wrapper.getRetrieveNewsWorkFinder()
         val worker = Wrapper.getRetrieveNewsWorker()
-        val scheduler = WorkScheduler<RetrieveNewsTask>(finder, mutableListOf(worker), 60*60)
+        val scheduler = WorkScheduler<RetrieveNewsTask>(finder, mutableListOf(worker), INTERVAL)
         scheduler.start()
     }
 

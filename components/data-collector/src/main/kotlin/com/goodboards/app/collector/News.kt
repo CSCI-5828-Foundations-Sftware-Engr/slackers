@@ -13,6 +13,7 @@ data class Articles(
     val publishedAt: String = "",
     val content: String = ""
 )
+
 @Serializable
 data class Source(
     val id: String = "",
@@ -25,5 +26,3 @@ data class NewsResponse(val status: String, val totalResults: Int, val articles:
 @Serializable
 data class NewsUnit(val gameID: String, val title: String, val description: String, val url: String)
 
-class News
-private constructor(articles: List<Articles>?)
