@@ -7,6 +7,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
 import org.slf4j.LoggerFactory
+import java.net.URLEncoder
 
 class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<RetrieveNewsTask> {
 
@@ -29,20 +30,21 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
             for(game in games) {
 
                 // Format game name for API call
-                val name = game.name.replace(" ", "_").lowercase()
+                val url = "https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$apiKey"
+                val encodedUrl = URLEncoder.encode(url, "UTF-8")
 
                 // Get data and deserialize
                 try {
-                    val newsRaw: HttpResponse = client.get("https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$apiKey")
+                    // TODO: use a builder instead
+                    val newsRaw: HttpResponse = client.get(encodedUrl)
                     val newsResponse = format.decodeFromString<NewsResponse>(newsRaw.readText())
 
                     // Package response into units of work for redis
                     for(article in newsResponse.articles) {
-                        if(article.title.isEmpty() || article.description.isEmpty() || article.url.isEmpty()) {
-                            continue
+                        if(article.title.isNotEmpty() && article.description.isNotEmpty() && article.url.isNotEmpty()) {
+                            val unit = NewsUnit(game.uuid, article.title, article.description, article.url)
+                            newsUnits.add(format.encodeToString(unit))
                         }
-                        val unit = NewsUnit(game.uuid, article.title, article.description, article.url)
-                        newsUnits.add(format.encodeToString(unit))
                     }
                 } catch (e: Exception) {
                     logger.error("Failed to fetch news with error $e")
