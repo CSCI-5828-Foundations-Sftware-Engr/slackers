@@ -14,6 +14,7 @@ dependencies {
     implementation "io.ktor:ktor-client-logging:$ktor_version"
     implementation "io.ktor:ktor-client-serialization:$ktor_version"
     implementation project(":components:db-interface")
+    implementation project(":components:redis-interface")
     testImplementation "org.jsoup:jsoup:1.14.3"
     testImplementation project(path: ':components:db-interface')
 }

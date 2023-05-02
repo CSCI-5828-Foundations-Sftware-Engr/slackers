@@ -10,7 +10,7 @@ class RedisInterfaceTest {
     fun testPushOneToList(){
         val redisInterface = mockk<RedisInterface>(relaxed = true)
         val listName: String = "Games"
-        val game: String = "{name: \"chess\", description: \"Bad Game\"}"
+        val game = listOf<String>("{name: \"chess\", description: \"Bad Game\"}")
         justRun { redisInterface.pushToList(listName, game) }
         redisInterface.pushToList(listName, game)
 
@@ -21,11 +21,11 @@ class RedisInterfaceTest {
     fun testPushMultipleToList(){
         val redisInterface = mockk<RedisInterface>(relaxed = true)
         val listName: String = "Games"
-        val games = arrayOf("{name: \"Chess\", description:\"Bad\"}", "{name: \"Catan\", description:\"Better\"}")
-        justRun { redisInterface.pushToList(listName, *games) }
-        redisInterface.pushToList(listName, *games)
+        val games = listOf<String>("{name: \"Chess\", description:\"Bad\"}", "{name: \"Catan\", description:\"Better\"}")
+        justRun { redisInterface.pushToList(listName, games) }
+        redisInterface.pushToList(listName, games)
 
-        verify { redisInterface.pushToList(listName, *games) }
+        verify { redisInterface.pushToList(listName, games) }
     }
 
     @Test

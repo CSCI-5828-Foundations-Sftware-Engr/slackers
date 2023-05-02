@@ -53,7 +53,7 @@ class RetrieveNewsWorkerTest {
         coEvery { mockedHttpResponse.readText() } returns rawArticle
 
         // Mock Redis Calls
-        val newsUnits = arrayOf(
+        val newsUnits = listOf<String>(
             """{
                 "gameID": "1",
                 "title": "Fake Title",
@@ -67,7 +67,7 @@ class RetrieveNewsWorkerTest {
                 "url": "Fake URL"
             }""".trimIndent()
         )
-        every { mockedRedisInterface.pushToList("news:collect-analyze", *newsUnits) } returns Unit
+        every { mockedRedisInterface.pushToList("news:collect-analyze", newsUnits) } returns Unit
 
         // ----- Test -----
         val task = RetrieveNewsTask("Happy Path Test")
@@ -111,8 +111,8 @@ class RetrieveNewsWorkerTest {
         coEvery { mockedHttpResponse.readText() } returns rawArticle
 
         // Mock Redis Calls
-        val newsUnits = arrayOf<String>()
-        every { mockedRedisInterface.pushToList("news:collect-analyze", *newsUnits) } throws Exception("ERROR: no articles to add")
+        val newsUnits = listOf<String>()
+        every { mockedRedisInterface.pushToList("news:collect-analyze", newsUnits) } throws Exception("ERROR: no articles to add")
 
         // ----- Test -----
         val task = RetrieveNewsTask("No Articles Found Test")

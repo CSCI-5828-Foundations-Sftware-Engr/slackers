@@ -48,8 +48,7 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
             // Put news in Redis if there is any
             if(newsUnits.size != 0)
             {
-                val arrNewsUnits = newsUnits.toTypedArray()
-                redisInterface.pushToList(name = "news:collect-analyze", *arrNewsUnits)
+                redisInterface.pushToList(name = "news:collect-analyze", newsUnits)
             }
 
             logger.info("completed data collection.")
