@@ -2,6 +2,7 @@ package com.goodboards.app.collector
 
 import com.goodboards.workflow.Worker
 import io.ktor.client.statement.*
+import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
@@ -32,16 +33,20 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
                 val name = game.name.replace(" ", "_").lowercase()
 
                 // Get data and deserialize
-                val newsRaw: HttpResponse = client.get("https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$apiKey")
-                val newsResponse = format.decodeFromString<NewsResponse>(newsRaw.readText())
+                try {
+                    val newsRaw: HttpResponse = client.get("https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$apiKey")
+                    val newsResponse = format.decodeFromString<NewsResponse>(newsRaw.readText())
 
-                // Package response into units of work for redis
-                for(article in newsResponse.articles) {
-                    if(article.title.isEmpty() || article.description.isEmpty() || article.url.isEmpty()) {
-                        continue
+                    // Package response into units of work for redis
+                    for(article in newsResponse.articles) {
+                        if(article.title.isEmpty() || article.description.isEmpty() || article.url.isEmpty()) {
+                            continue
+                        }
+                        val unit = NewsUnit(game.uuid, article.title, article.description, article.url)
+                        newsUnits.add(format.encodeToString(unit))
                     }
-                    val unit = NewsUnit(game.uuid, article.title, article.description, article.url)
-                    newsUnits.add(format.encodeToString(unit))
+                } catch (e: Exception) {
+                    logger.error("Failed to fetch news with error $e")
                 }
             }
 

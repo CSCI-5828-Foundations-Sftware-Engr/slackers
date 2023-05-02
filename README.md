@@ -54,7 +54,7 @@ Run the servers locally using the below examples.
 java -jar applications/basic-server/build/libs/basic-server-1.0-SNAPSHOT.jar
 ```
 
-### Data collector (WIP)
+### Data collector
 
 ```bash
 java -jar applications/data-collector-server/build/libs/data-collector-server-1.0-SNAPSHOT.jar
