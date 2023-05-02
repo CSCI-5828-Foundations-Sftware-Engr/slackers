@@ -54,8 +54,11 @@ class RetrieveNewsWorkerTest {
         coEvery { mockedHttpResponse.readText() } returns rawArticle
 
         // Mock Redis Calls
-        // TODO: mock the exact list of news units -- having difficulties atm
-        every { mockedRedisInterface.pushToList("news:collect-analyze", any()) } returns Unit
+        val newsUnits = listOf(
+            "{\"gameID\":\"1\",\"title\":\"Fake Title\",\"description\":\"Fake Description\",\"url\":\"Fake URL\"}",
+            "{\"gameID\":\"2\",\"title\":\"Fake Title\",\"description\":\"Fake Description\",\"url\":\"Fake URL\"}"
+        )
+        every { mockedRedisInterface.pushToList("news:collect-analyze", newsUnits) } returns Unit
 
         // ----- Test -----
         val task = RetrieveNewsTask("Happy Path Test")

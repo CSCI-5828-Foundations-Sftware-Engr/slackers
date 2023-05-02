@@ -16,7 +16,6 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
     private val apiKey = Wrapper.getEnv("NEWS_API_KEY")
     private val client = Wrapper.getHttpClient()
     private val format = Json {
-        prettyPrint = true
         coerceInputValues = true
     }
 
