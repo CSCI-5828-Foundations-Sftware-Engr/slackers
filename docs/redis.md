@@ -51,15 +51,15 @@ private val redisCommands: RedisCommands<String, String> = connection.sync()
 #### Methods
 
 ```Kotlin
-fun pushToList(name: String, vararg values: String) {
-    redisCommands.lpush(name, *values)
+fun pushToList(name: String, values: List<String> {
+    redisCommands.lpush(name, *values.toTypedArray())
 }
 ```
-This function takes two arguments, a name and a variable
-length array of string values. Then it push these string
-to the start or left the list named 'name' on the Redis
-server. If the there is no list with that name then a new
-list is created with that name.
+This function takes two arguments, a name and a list of string. 
+Then it converts this list of strings to an array of strings, spreads it
+using the * spread-operator pushes all the strings to the start or left 
+the list named 'name' on the Redis server. If the there is no list with 
+that name then a new list is created with that name.
 
 ```Kotlin
 fun getFromList(name: String, count: Long = 1): List<String> {
@@ -82,7 +82,7 @@ This method is used to close the Redis connection and shutdown the Redis client.
 ```Kotlin
 import com.goodboards.redis.*
 val redisInterface = RedisInterface()
-redisInterface.lpush("Games", "{name: 'Chess', desc:'Good Game'}")
+redisInterface.pushToList("Games", listOf<String>("{name: 'Chess', desc:'Good Game'}"))
 println(redisInterface.rpop("Games"))
 // prints -> "{name: 'Chess', desc:'Good Game'}"
 ```
