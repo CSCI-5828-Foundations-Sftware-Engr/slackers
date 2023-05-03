@@ -10,7 +10,6 @@ dependencies {
     implementation project(":components:data-collector")
     implementation project(":components:workflow-support")
     implementation project(":components:db-interface")
-    implementation project(":components:redis-interface")
 
     // Transitive dependency
     implementation 'io.lettuce:lettuce-core:6.2.4.RELEASE'
