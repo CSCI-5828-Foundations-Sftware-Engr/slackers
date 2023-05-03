@@ -16,7 +16,7 @@ We have a staging deployment up and production can be up  on a button-click.
 ## Messaging
 
 - We deployed Redis to staging and production to support messaging.
-- The environment variable is `REDIS_TLS_URL`, which is used to connect to Redis on Heroku.
+- The environment variable is `REDIS_URL`, which is used to connect to Redis on Heroku.
 - We use Redis list as queue using `LPUSH` and `RPOP` commands as push and pop.
 - The list `news:collect-analyze` is used by Collector and Analyzer as messaging queue.
 - Heroku Redis connection document: [link](https://devcenter.heroku.com/articles/connecting-heroku-redis#external-connections)

@@ -22,11 +22,11 @@ respond with `PONG` confirming the server has started.
 
 ### Environment Variables
 1. The Goodboards app will access redis through a
-environment (env) variable called `REDIS_TLS_URL`, so for Redis
+environment (env) variable called `REDIS_URL`, so for Redis
 to work properly you will need to set the env variable. On
 Mac, \
-you can use `export REDIS_TLS_URL=redis://localhost:6379`
-to confirm the variable has been set use `echo $REDIS_TLS_URL`
+you can use `export REDIS_URL=redis://localhost:6379`
+to confirm the variable has been set use `echo $REDIS_URL`
 2. And that's it ;D
 
 ## Redis Package Contents
@@ -39,8 +39,8 @@ env variables.
 ### Class Methods & Properties
 #### Properties
 ```Kotlin
-// Get REDIS_TLS_URL env variable value   
-private val redisHost = SystemWrapper.getenv("REDIS_TLS_URL")
+// Get REDIS_URL env variable value   
+private val redisHost = SystemWrapper.getenv("REDIS_URL")
 // Create a redis client for the given host url
 private val redisClient: RedisClient = RedisClient.create(redisHost)
 // Connect the client to redis server at the host url, creating a connection
