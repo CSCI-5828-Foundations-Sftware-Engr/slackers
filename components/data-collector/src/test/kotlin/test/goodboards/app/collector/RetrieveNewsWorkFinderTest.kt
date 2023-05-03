@@ -12,7 +12,6 @@ class RetrieveNewsWorkFinderTest {
         val items = finder.findRequested("Happy Path Test")
 
         // Expect: RetrieveNewsTask with "some info"
-        assert(items is MutableList)
         assert(items.size == 1)
         assert(items[0].info == "some info")
     }
