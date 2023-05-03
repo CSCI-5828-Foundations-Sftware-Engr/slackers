@@ -30,13 +30,13 @@ class RetrieveNewsWorker(override val name: String = "data-collector") : Worker<
             for(game in games) {
 
                 // Format game name for API call
-                val url = "https://newsapi.org/v2/everything?q=$name&language=en&pageSize=10&apiKey=$apiKey"
-                val encodedUrl = URLEncoder.encode(url, "UTF-8")
+                val encodedName = URLEncoder.encode(game.name, "UTF-8")
+                val url = "https://newsapi.org/v2/everything?q=$encodedName&language=en&pageSize=10&apiKey=$apiKey"
 
                 // Get data and deserialize
                 try {
                     // TODO: use a builder instead
-                    val newsRaw: HttpResponse = client.get(encodedUrl)
+                    val newsRaw: HttpResponse = client.get(url)
                     val newsResponse = format.decodeFromString<NewsResponse>(newsRaw.readText())
 
                     // Package response into units of work for redis
